@@ -1,0 +1,258 @@
+{
+
+  "components": [
+    {
+      "type": "text",
+      "path": "mainText",
+      "label": [
+        {
+          "name": "en-us",
+          "value": "Title1"
+        },
+        {
+          "name": "fr-fr",
+          "value": "Titre1"
+        }
+      ],
+      "params": {
+        "locked": false,
+        "defaults": "My Title", // defaults can be a string or an array. It
+        "value": "My Title",
+        "maxCharacters": 650,
+        "fontMin": 44,
+        "fontMax": 72,
+        "blacklist": {
+          "words": [
+            "Word1",
+            "Word2",
+            "Blocked phrase 1",
+            "Another blocked phrase 2",
+            "Word3"
+          ],
+          "master": true
+        }
+      },
+      "styles": {
+        "fontFamily": {
+          "name": "Font",
+          "options": [
+            {
+              "name": "Open Sans",
+              "value": "Open-Sans"
+            }, // Should fonts be installed on the player separately?
+            {
+              "name": "Helvetica Neue",
+              "value": "Helvetica-Neue"
+            }
+          ],
+          "value": "Open-Sans",
+          "locked": false,
+          "cssProperty": "fontFamily"
+        },
+        "whiteSpace": {
+          "name": "Text Wrapping",
+          "options": ["normal", "no-wrap"],
+          "value": "no-wrap",
+          "cssProperty": "whiteSpace"
+        },
+        "textColor": {
+          "name": "Text Color",
+          "value": "#44FFCC",
+          "locked": true,
+          "cssProperty": "color"
+        },
+        "backgroundColor": {
+          "name": "Background Color",
+          "value": "#F2780C",
+          "locked": true,
+          "cssProperty": "backgroundColor"
+        },
+        "textAlignment": {
+          "name": "Text Alignment",
+          "options": [
+            "left",
+            "center",
+            "right",
+            "justify"
+          ],
+          "value": "justify",
+          "locked": true,
+          "cssProperty": "textAlign"
+        },
+        "bold":{
+          "name": "Bold",
+          "options": [
+            "normal",
+            "bold"
+          ],
+          "value": "normal",
+          "locked": true,
+          "cssProperty": "fontWeight"
+        },
+        "textDecoration": {
+          "name": "Text Decoration",
+          "options": ["underline", "line-through", "underline line-through", "none"],
+          "value": "underline",
+          "locked": true,
+          "cssProperty": "textDecoration"
+        },
+        "fontStyle": {
+          "name": "Font Style",
+          "options": ["normal", "oblique", "italic"],
+          "value": "normal",
+          "locked": true,
+          "cssProperty": "fontStyle"
+        },
+        "fontVariant": {
+          "name": "Font Case",
+          "options": [
+            {"name": "All Caps", "value": "all-caps"},
+            {"name": "Small Caps", "value": "small-caps"},
+            {"name": "Normal", "value": "normal"}
+          ],
+          "value": "normal",
+          "locked": true,
+          "cssProperty": "fontVariant"
+        },
+        "textTransform": {
+          "name": "Text Transform",
+          "options": [
+            {"name": "Uppercase", "value": "uppercase"},
+            {"name": "Lowercase", "value": "lowercase"},
+            {"name": "None", "value":"none"}
+          ],
+          "value": "none",
+          "locked": true,
+          "cssProperty": "textTransform"
+        }
+      },
+      "animations": [
+        {
+          "name": "Basic Fade In",
+          "intro": {
+            "animation": "fade-in",
+            "timingFunction": "ease-in",
+            "duration": 4
+          },
+          "loop": {},
+          "outro": {}
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "path": "mainImage",
+      "label": [
+        {
+          "name": "en-us",
+          "value": "Image 1"
+        },
+        {
+          "name": "fr-fr",
+          "value": "Image 1"
+        }
+      ],
+      "params": {
+        "locked": false,
+        "defaults": "",
+        "value": "img.jpeg",
+        "position": "fill"
+      },
+      "styles": {
+        "opacity": {
+          "name": "Opacity",
+          "value": "1",
+          "locked": false,
+          "cssProperty": "opacity"
+        },
+        "transform": {
+          "name": "Rotation",
+          "locked": false,
+          "value": "rotate(96deg)",
+          "cssProperty": "transform"
+        },
+        "backgroundColor": {
+          "name": "Background Color",
+          "locked": false,
+          "value": "#F2780C",
+          "cssProperty": "backgroundColor"
+        }
+      },
+      "animations": [
+        {
+          "name": "Basic Fade In - out",
+          "intro": {
+            "animation": "fade-in",
+            "timingFunction": "ease-out",
+            "duration": 4
+          },
+          "loop": {},
+          "outro": {
+            "animation": "fade-out",
+            "timingFunction": "ease-in",
+            "duration": 4
+          }
+        }
+      ]
+    },
+    {
+      "type": "slideshow",
+      "path": "mainSlideshow",
+      "label": [
+        {
+          "name": "en-us",
+          "value": "Slideshow 1"
+        },
+        {
+          "name": "fr-fr",
+          "value": "Slideshow 1"
+        }
+      ],
+      "params": {
+        "locked": false,
+        "defaults": "",
+        "value": ["img1.jpg", "img2.jpg", "img3.jpg"],
+        "pictureTime": 4,
+        "maxPictures":  4,
+        "shuffle": {
+          "value": true,
+          "locked": true
+        },
+        "loop": {
+          "value": true,
+          "locked": true
+        },
+        "position": "fill"
+      },
+      "styles": {
+        "opacity": {
+          "name": "Opacity",
+          "value": "1",
+          "locked": false,
+          "cssProperty": "opacity"
+        },
+        "backgroundColor": {
+          "name": "Background Color",
+          "locked": false,
+          "value": "#F2780C"
+        }
+      },
+      "animations": [
+        {
+          "name": "Basic Fade In - out",
+          "intro": {
+            "animation": "fade-in",
+            "timingFunction": "ease-out",
+            "duration": 4
+          },
+          "loop": {},
+          "outro": {
+            "animation": "fade-out",
+            "timingFunction": "ease-in",
+            "duration": 4
+          }
+        }
+      ]
+    }
+  ]
+}
