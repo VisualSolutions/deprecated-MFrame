@@ -1,0 +1,11 @@
+{
+  "name": "template",
+  "version": "0.0.0",
+  "authors": [
+    "a.r.depatie@gmail.com <a.r.depatie@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "ngFitText": "~3.3.3"
+  }
+}
