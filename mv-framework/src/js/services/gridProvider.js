@@ -6,7 +6,7 @@ angular
     .factory('gridProvider', function() {
       var scope = this;
 
-      scope.grid = null;
+      scope.grid = {};
 
       scope.setupGrid = setupGrid;
 

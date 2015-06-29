@@ -7,6 +7,8 @@ angular
     .module('mvFramework')
     .service('gridChecker', function(gridProvider) {
 
+      gridProvider.setupGrid();
+
       var service = this;
 
       service.check = check;
