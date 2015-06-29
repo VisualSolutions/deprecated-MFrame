@@ -4,63 +4,48 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: 'package.json',
-    bower: {
-      framework: {
-        base: 'bower_components',
-        dest: 'mv-framework/src/js/lib'
-      }
-    },
     connect: {
       server: {
         options: {
           livereload: 35729,
-          open: true
+          open: true,
+          base: 'test'
         }
       }
     },
     watch: {
-      example: {
-        html: {
-          files: ['index.html', 'partials/**/*.html'],
-          options: {
-            livereload: true
-          }
+      html: {
+        files: ['test/**/*.html'],
+        options: {
+          livereload: true
+        }
 
-        },
-        js: {
-          files: ['template.js', 'fields.json', 'scripts/**/*.js'],
-          options: {
-            livereload: true
-          }
-        },
-        less: {
-          files: ['styles/**/*.less'],
-          tasks: ['less'],
-          options: {
-            livereload: true
-          }
+      },
+      testjs: {
+        files: ['test/template.js', 'test/config.json', 'test/*.js'],
+        options: {
+          livereload: true
         }
       },
-      framework: {
-        js: {
-          files: ['mv-framework/**/*.js'],
-          options: {
-            livereload: true
-          }
-        },
-        less: {
-          files: ['mv-framework/**/*.less'],
-          tasks: ['less'],
-          options: {
-            livereload: true
-          }
+      js: {
+        files: ['mv-framework/scripts/src/**/*.js'],
+        tasks:['uglify'],
+        options: {
+          livereload: true
+        }
+      },
+      less: {
+        files: ['test/*.less'],
+        tasks: ['less'],
+        options: {
+          livereload: true
         }
       }
     },
     less: {
-      example: {
+      test: {
         files: {
-          '.tmp/main.css': 'styles/main.less'
+          'test/template.css': 'test/template.less'
         }
       }
     },
@@ -76,28 +61,37 @@ module.exports = function(grunt) {
     },
     wiredep: {
       dev: {
-        src: ['template-example/index.html'],
-        options: {
-          directory: 'template-example/bower_components'
-        }
+        src: ['test/index.html'],
+        directory: 'test/bower_components'
       }
+    },
+    copy: {
+      test: {
+        expand: true,
+          src: ['mv-framework/dist/*', 'bower_components/**'],
+          dest: 'test/'
+      }
+    },
+    clean: {
+      test: ['test/mv-framework', 'test/bower_components']
     }
-
   });
 
   grunt.loadNpmTasks('main-bower-files');
 
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('example', [
+  grunt.registerTask('test', [
+      'build',
+      'clean',
+      'copy:test',
       'wiredep',
       'less',
       'connect',
       'watch'
   ]);
 
-  grunt.registerTask('framework', [
-      'bower',
+  grunt.registerTask('build', [
       'uglify'
   ]);
 };

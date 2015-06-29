@@ -3,25 +3,25 @@
  */
 angular
     .module('mvFramework')
-    .provider('mvLoader', function($http, errorHandler) {
+    .provider('mvLoader', function() {
       var jsonPath = 'config.json';
 
       this.setJsonPath = function(p) {
         jsonPath = p;
       };
 
-      function Loader() {
-        this.loadJson = function() {
+      function Loader($http, errorHandler) {
+        this.loadConfig = function() {
           return $http.get(jsonPath).success(function(data) {
-            return data;
+            return angular.fromJson(data);
           }).error(function() {
             errorHandler.report(101);
           });
         }
       }
 
-      this.$get = function() {
-        return new Loader();
+      this.$get = function($http, errorHandler) {
+        return new Loader($http, errorHandler);
       };
 
     });

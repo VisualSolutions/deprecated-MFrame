@@ -5,7 +5,7 @@
 
 angular
     .module('mvFramework')
-    .factory('mvConfig', function(mvLoader) {
+    .factory('configFactory', function(mvLoader) {
       var scope = this;
 
       scope.config = null;
@@ -13,16 +13,17 @@ angular
       scope.loadConfig = loadConfig;
       scope.getField = getField;
 
+      scope.loadConfig();
       return scope;
 
       function loadConfig() {
        scope.config = angular.copy(mvLoader.loadConfig());
       }
 
-      function getField(path) {
+      function getComponentConfig(path) {
         // check for JSON here
-        angular.forEach(scope.config.fields, function() {
-
-        })
+        return scope.config.components.filter(function(val) {
+          return val.path === path;
+        })[0];
       }
     });

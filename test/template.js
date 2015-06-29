@@ -3,5 +3,5 @@
  */
 angular.module('frameworkTest')
   .controller('templateCtrl', function($scope) {
-    
+
   });

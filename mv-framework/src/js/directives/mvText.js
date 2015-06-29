@@ -3,7 +3,7 @@
  */
 angular
     .module('mvFramework')
-    .directive('mv-text', function(configFactory, $filter) {
+    .directive('mvText', function(configFactory, $filter) {
       return {
         restrict: 'E',
         scope: {path: '@'},
@@ -23,7 +23,7 @@ angular
 
 
           function getConfig() {
-            scope.config = configFactory.getField(scope.path);
+            scope.config = configFactory.getComponentConfig(scope.path);
 
             return scope;
           }
@@ -34,7 +34,7 @@ angular
 
 
           function setupConfig() {
-            scope.content = limitText(scope.config.text.value, scope.config.text.maxCharacters);
+            scope.content = limitText(scope.config.params.value, scope.config.params.maxCharacters);
 
             // Set single or multi-line text
             scope.styles.whiteSpace = scope.config.text.singleLine ? 'no-wrap' : 'normal';
@@ -55,4 +55,3 @@ angular
         '<div ng-bind="content" data-fittext data-fittext-max="config.text.fontMax" data-fittext data-fittext-min="config.text.fontMin" ng-style="styles"></div>'
       )
 }]);
-

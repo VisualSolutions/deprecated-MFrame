@@ -7,9 +7,14 @@
 </head>
 <body>
 
-<div ng-include="template.html"></div>
+<div ng-include="'template.html'"></div>
 
-<script src="../mv-framework/dist/mv.min.js"></script>
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/ngFitText/src/ng-FitText.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<!-- endBower -->
+<script src="mv-framework/dist/mv.min.js"></script>
 
 <script src="app.js"></script>
 <script src="template.js"></script>
