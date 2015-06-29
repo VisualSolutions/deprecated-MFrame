@@ -1,2 +1,0 @@
-# Mvision Template Framework
-
