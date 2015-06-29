@@ -3,4 +3,4 @@
  */
 'use strict';
 
-angular.module('')
+angular.module('frameworkTest' ['mvFramework']);
