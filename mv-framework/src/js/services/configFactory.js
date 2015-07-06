@@ -5,25 +5,40 @@
 
 angular
     .module('mvFramework')
-    .factory('configFactory', function(mvLoader) {
+    .factory('configFactory', function(mvLoader, errorHandler, $q) {
       var scope = this;
 
       scope.config = null;
 
-      scope.loadConfig = loadConfig;
-      scope.getField = getField;
+      scope.getComponentConfig = getComponentConfig;
 
-      scope.loadConfig();
       return scope;
 
       function loadConfig() {
-       scope.config = angular.copy(mvLoader.loadConfig());
+        var d = $q.defer();
+        mvLoader.loadConfig().then(function(response) {
+          d.resolve(response.data);
+        })
+        return d.promise;
       }
 
       function getComponentConfig(path) {
-        // check for JSON here
-        return scope.config.components.filter(function(val) {
-          return val.path === path;
-        })[0];
+        var d = $q.defer();
+        console.log('componentconfig called');
+        if(scope.config === null) {
+          loadConfig().then(function(data) {
+            scope.config = data;
+
+            d.resolve(scope.config.components.filter(function(val) {
+              return val.path === path;
+            })[0]);
+          })
+        } else {
+
+          d.resolve(scope.config.components.filter(function(val) {
+            return val.path === path;
+          })[0]);
+        }
+        return d.promise;
       }
     });

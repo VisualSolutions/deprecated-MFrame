@@ -16,11 +16,11 @@
       ],
       "params": {
         "locked": false,
-        "defaults": "My Title", // defaults can be a string or an array. It
+        "defaults": "My Title",
         "value": "My Title",
         "maxCharacters": 650,
         "fontMin": 44,
-        "fontMax": 72,
+        "fontMax": 55,
         "blacklist": {
           "words": [
             "Word1",
@@ -39,7 +39,7 @@
             {
               "name": "Open Sans",
               "value": "Open-Sans"
-            }, // Should fonts be installed on the player separately?
+            },
             {
               "name": "Helvetica Neue",
               "value": "Helvetica-Neue"

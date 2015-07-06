@@ -1,11 +1,13 @@
 /**
  * Created by alex.depatie on 5/22/15.
  */
+ 'use strict';
 angular
     .module('mvFramework')
     .directive('mvText', function(configFactory, $filter) {
       return {
         restrict: 'E',
+        replace: true,
         scope: {path: '@'},
         templateUrl: 'template/mv-text.html',
         link: function(scope, element, attr) {
@@ -16,28 +18,39 @@ angular
           scope.getConfig = getConfig;
           scope.setupConfig = setupConfig;
 
-          scope.getConfig().setupConfig();
-
+          scope.getConfig();
 
           /////
 
 
           function getConfig() {
-            scope.config = configFactory.getComponentConfig(scope.path);
-
-            return scope;
+            configFactory.getComponentConfig(scope.path).then(function(data) {
+              console.log(data);
+              scope.config = data;
+              setupConfig();
+            });
           }
 
           function limitText(text, max) {
             return $filter('limitTo')(text, max);
           }
 
+          function resizer() {
+            scope.styles.fontSize = '10px';
+            var ratio = element[0].offsetHeight / element[0].offsetWidth / 1;
+            scope.styles.fontSize = Math.max(
+              Math.min((element.parent()[0].offsetWidth - 6) * ratio, parseFloat(scope.config.params.fontMin)),
+              parseFloat(scope.config.params.fontMax)
+            ) + 'px';
+          };
 
           function setupConfig() {
-            scope.content = limitText(scope.config.params.value, scope.config.params.maxCharacters);
+            scope.content = scope.config.params.value;
+            console.log('content', scope.content);
 
+            resizer();
             // Set single or multi-line text
-            scope.styles.whiteSpace = scope.config.text.singleLine ? 'no-wrap' : 'normal';
+            scope.styles.whiteSpace = scope.config.params.singleLine ? 'no-wrap' : 'normal';
 
 
             angular.forEach(scope.config.styles, function(style) {
@@ -52,6 +65,6 @@ angular
     .module('mvFramework')
     .run(['$templateCache', function($templateCache) {
       $templateCache.put('template/mv-text.html',
-        '<div ng-bind="content" data-fittext data-fittext-max="config.text.fontMax" data-fittext data-fittext-min="config.text.fontMin" ng-style="styles"></div>'
+        '<div class="mv-text" ng-bind="content" ng-style="styles"></div>'
       )
 }]);
