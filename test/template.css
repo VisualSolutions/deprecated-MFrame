@@ -1,9 +1,128 @@
+@font-face {
+  font-family: 'almendra_scbold_italic';
+  src: url('fonts/almendrasc-bolditalic-webfont.ttf') format('truetype'), url('fonts/almendrasc-bolditalic-webfont.eot'), url('fonts/almendrasc-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/almendrasc-bolditalic-webfont.woff2') format('woff2'), url('fonts/almendrasc-bolditalic-webfont.woff') format('woff'), url('fonts/almendrasc-bolditalic-webfont.ttf') format('truetype'), url('fonts/almendrasc-bolditalic-webfont.svg#almendra_scbold_italic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'almendraitalic';
+  src: url('fonts/almendra-italic-webfont.ttf') format('truetype'), url('fonts/almendra-italic-webfont.eot'), url('fonts/almendra-italic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/almendra-italic-webfont.woff2') format('woff2'), url('fonts/almendra-italic-webfont.woff') format('woff'), url('fonts/almendra-italic-webfont.svg#almendraitalic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 body,
 html {
   width: 100%;
   height: 100%;
 }
-.mv-text {
+body .template,
+html .template {
   width: 100%;
-  height: 80px;
+  height: 100%;
+}
+body {
+  background: #fff;
+  background-image: url('../images/bg.png');
+  background-repeat: no-repeat;
+}
+.home,
+.site {
+  height: 100%;
+  width: 100%;
+  max-height: 1080px;
+  max-width: 1920px;
+}
+.body-holder {
+  overflow: hidden;
+  float: left;
+  display: inline-block;
+  position: relative;
+  margin-top: 100px;
+  width: 62%;
+  height: auto;
+}
+.body-holder .text-box {
+  z-index: 50;
+  position: absolute;
+  left: 16.5%;
+  top: 18%;
+  width: 67%;
+  height: 523px;
+}
+.body-holder .text-box .header-text {
+  font-family: 'almendra_scbold_italic', serif;
+  font-size: 62px;
+  margin-bottom: 30px;
+}
+.body-holder .text-box .body-text {
+  font-family: 'almendraitalic', serif;
+  font-size: 30px;
+  height: calc(100% - 78px);
+  width: 100%;
+}
+.body-holder .scroll {
+  width: 100%;
+  height: auto;
+}
+.left-image {
+  overflow: hidden;
+  display: inline-block;
+  width: 37.5%;
+  height: 811px;
+  margin-top: 190px;
+  float: left;
+  text-align: right;
+  opacity: 0;
+}
+.left-image img {
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 1280px) and (min-aspect-ratio: 10/17) {
+  /* CSS for high-density screens */
+  body {
+    background-image: url('../images/bg_720.png');
+  }
+  body .main .home .image-holder {
+    margin-top: 100px;
+  }
+  body .main .home .body-holder {
+    margin-top: 10px;
+  }
+}
+@media (max-aspect-ratio: 10/11) and (max-width: 720px) {
+  body {
+    background-image: url('../images/bg_pt_720.png');
+  }
+}
+@media (max-aspect-ratio: 10/11) and (min-width: 721px) {
+  body {
+    background-image: url('../images/bg_pt.png');
+  }
+}
+.mv-text {
+  overflow: hidden;
+  height: auto;
+}
+.mv-text > span {
+  display: inline-block;
+  word-spacing: normal;
+  width: 100%;
+  height: 100%;
+}
+.mv-image {
+  overflow: hidden;
+  display: inline-block;
+}
+.mv-image .image-helper {
+  min-height: 50px;
+  margin: auto;
+}
+.mv-image .image-helper img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }

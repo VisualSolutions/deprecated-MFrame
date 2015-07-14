@@ -5,7 +5,7 @@
 
 angular
     .module('mvFramework')
-    .service('mvLoader', function($http) {
+    .service('mvLoader', function($http, errorHandler) {
       var service = this;
 
       service.loadConfig = loadConfig;

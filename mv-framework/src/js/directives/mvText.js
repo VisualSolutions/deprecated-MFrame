@@ -4,7 +4,7 @@
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvText', function(configFactory, $filter) {
+    .directive('mvText', function(configFactory, $filter, $timeout) {
       return {
         restrict: 'E',
         replace: true,
@@ -12,7 +12,8 @@ angular
         templateUrl: 'template/mv-text.html',
         link: function(scope, element, attr) {
           scope.config = null;
-          scope.styles = {};
+          scope.containerStyles = {};
+          scope.textStyles = {};
           scope.content = null;
 
           scope.getConfig = getConfig;
@@ -31,30 +32,26 @@ angular
             });
           }
 
-          function limitText(text, max) {
-            return $filter('limitTo')(text, max);
-          }
+          var resizer = function() {
+            console.log(scope.content.length);
+            var optimumSize = Math.sqrt(element[0].clientWidth * element[0].clientHeight / scope.content.length);
+            var newSize = Math.max(Math.min(optimumSize * scope.config.params.sizeFactor, scope.config.params.fontMax), scope.config.params.fontMin);
 
-          function resizer() {
-            scope.styles.fontSize = '10px';
-            var ratio = element[0].offsetHeight / element[0].offsetWidth / 1;
-            scope.styles.fontSize = Math.max(
-              Math.min((element.parent()[0].offsetWidth - 6) * ratio, parseFloat(scope.config.params.fontMin)),
-              parseFloat(scope.config.params.fontMax)
-            ) + 'px';
+
+
+            scope.textStyles.fontSize = newSize + 'px';
           };
 
           function setupConfig() {
             scope.content = scope.config.params.value;
             console.log('content', scope.content);
 
-            resizer();
+            $timeout(resizer(), 1000);
             // Set single or multi-line text
-            scope.styles.whiteSpace = scope.config.params.singleLine ? 'no-wrap' : 'normal';
 
 
             angular.forEach(scope.config.styles, function(style) {
-              scope.styles[style.name] = style.value;
+              scope.containerStyles[style.cssProperty] = style.value;
             });
           }
         }
@@ -65,6 +62,8 @@ angular
     .module('mvFramework')
     .run(['$templateCache', function($templateCache) {
       $templateCache.put('template/mv-text.html',
-        '<div class="mv-text" ng-bind="content" ng-style="styles"></div>'
+        '<div class="mv-text" ng-style="containerStyles">' +
+        '  <span class="text-content" ng-bind="content" ng-style="textStyles"></span>' +
+        '</div>'
       )
 }]);
