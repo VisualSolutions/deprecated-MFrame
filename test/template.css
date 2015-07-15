@@ -108,6 +108,7 @@ html .template {
   height: auto;
 }
 .mv-text > span {
+  text-decoration: inherit;
   display: inline-block;
   word-spacing: normal;
   width: 100%;
