@@ -309,13 +309,13 @@
         "transform": {
           "name": "Rotation",
           "locked": false,
-          "value": "rotate(0deg)",
+          "value": "rotate(90deg)",
           "cssProperty": "transform"
         },
         "wTransform": {
           "name": "Rotation",
           "locked": false,
-          "value": "rotate(0deg)",
+          "value": "rotate(90deg)",
           "cssProperty": "WebkitTransform"
         },
         "backgroundColor": {

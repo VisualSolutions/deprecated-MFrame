@@ -56,9 +56,15 @@ angular
                 //console.log('') put errorLogger here
                 break;
             }
+            var rotation = scope.config.styles['transform'].value;
+
+            scope.imageStyles.transform = rotation;
+            scope.imageStyles.WebkitTransform = rotation;
 
             angular.forEach(scope.config.styles, function(style) {
-              scope.containerStyles[style.cssProperty] = style.value;
+              if(style.name !== 'Rotation') {
+                scope.containerStyles[style.cssProperty] = style.value;
+              }
             });
           }
         }
