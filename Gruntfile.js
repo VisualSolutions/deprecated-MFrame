@@ -9,33 +9,33 @@ module.exports = function(grunt) {
         options: {
           livereload: 35729,
           open: true,
-          base: 'test'
+          base: 'example'
         }
       }
     },
     watch: {
       html: {
-        files: ['test/**/*.html'],
+        files: ['example/**/*.html'],
         options: {
           livereload: true
         }
 
       },
       testjs: {
-        files: ['test/template.js', 'test/config.json', 'test/*.js'],
+        files: ['example/template.js', 'example/config.json', 'example/*.js'],
+        tasks:['uglify'],
         options: {
           livereload: true
         }
       },
       js: {
         files: ['mv-framework/scripts/src/**/*.js'],
-        tasks:['uglify'],
         options: {
           livereload: true
         }
       },
       less: {
-        files: ['test/*.less'],
+        files: ['example/*.less'],
         tasks: ['less'],
         options: {
           livereload: true
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
     less: {
       test: {
         files: {
-          'test/template.css': 'test/template.less'
+          'example/template.css': 'example/template.less'
         }
       }
     },
@@ -61,19 +61,19 @@ module.exports = function(grunt) {
     },
     wiredep: {
       dev: {
-        src: ['test/index.html'],
-        directory: 'test/bower_components'
+        src: ['example/index.html'],
+        directory: 'example/bower_components'
       }
     },
     copy: {
       test: {
         expand: true,
           src: ['mv-framework/dist/*', 'bower_components/**'],
-          dest: 'test/'
+          dest: 'example/'
       }
     },
     clean: {
-      test: ['test/mv-framework', 'test/bower_components']
+      test: ['example/mv-framework', 'example/bower_components']
     }
   });
 
@@ -81,7 +81,11 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('test', [
+  grunt.registerTask('default', [
+    'example'
+  ])
+
+  grunt.registerTask('example', [
       'build',
       'clean',
       'copy:test',
