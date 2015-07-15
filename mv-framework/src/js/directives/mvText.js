@@ -4,7 +4,7 @@
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvText', function(configFactory, $filter, $timeout) {
+    .directive('mvText', function(configFactory, $filter, $timeout, fontFactor) {
       return {
         restrict: 'E',
         replace: true,
@@ -35,7 +35,7 @@ angular
           var resizer = function() {
             console.log(scope.content.length);
             var optimumSize = Math.sqrt(element[0].clientWidth * element[0].clientHeight / scope.content.length);
-            var newSize = Math.max(Math.min(optimumSize * scope.config.params.sizeFactor, scope.config.params.fontMax), scope.config.params.fontMin);
+            var newSize = Math.max(Math.min(optimumSize * fontFactor.factor, scope.config.params.fontMax), scope.config.params.fontMin);
 
 
 

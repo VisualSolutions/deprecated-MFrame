@@ -39,8 +39,8 @@ angular
 
             switch(scope.config.params.position) {
               case 'fit':
-                scope.imageStyles.height = ratioCheck ? '100%' : 'auto';
-                scope.imageStyles.width = ratioCheck ? 'auto' : '100%';
+              scope.imageStyles.height = ratioCheck ? '100%' : 'auto';
+              scope.imageStyles.width = ratioCheck ? 'auto' : '100%';
                 break;
               case 'fill':
                 scope.imageStyles.height = ratioCheck ? 'auto' : '100%';
@@ -70,7 +70,7 @@ angular
     .run(['$templateCache', function($templateCache) {
       $templateCache.put('template/mv-image.html',
         '<div class="mv-image" ng-style="containerStyles">' +
-        '  <span class="image-helper"><img ng-style="imageStyles" ng-src="images/{{content}}" alt="{{path}}"/></span>' +
+        '  <div class="image-helper"><img ng-style="imageStyles" ng-src="images/{{content}}" alt="{{path}}"/></div>' +
         '</div>'
       )
 }]);
