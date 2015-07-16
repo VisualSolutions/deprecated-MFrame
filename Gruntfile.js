@@ -83,7 +83,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', [
     'example'
-  ])
+  ]);
 
   grunt.registerTask('example', [
       'build',

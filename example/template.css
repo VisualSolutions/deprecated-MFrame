@@ -70,9 +70,6 @@ html .template {
 .left-image {
   overflow: hidden;
   display: inline-block;
-  width: calc(37.5% - 100px);
-  margin-left: 100px;
-  height: 100%;
   min-height: 10px;
   float: left;
   text-align: right;
@@ -104,6 +101,7 @@ html .template {
   }
 }
 .mv-text {
+  position: absolute;
   overflow: hidden;
   height: auto;
 }
@@ -117,7 +115,7 @@ html .template {
   height: 100%;
 }
 .mv-image {
-  position: relative;
+  position: absolute;
   overflow: hidden;
   display: inline-block;
 }
@@ -133,4 +131,7 @@ html .template {
   left: 0;
   right: 0;
   margin: auto;
+}
+[attr="mv-grid"] {
+  position: absolute;
 }

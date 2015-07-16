@@ -1,6 +1,4 @@
-/**
- * Created by alex.depatie on 5/25/15.
- */
+
 'use strict';
 
 angular

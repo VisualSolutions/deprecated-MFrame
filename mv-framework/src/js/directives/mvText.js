@@ -1,10 +1,8 @@
-/**
- * Created by alex.depatie on 5/22/15.
- */
+
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvText', function(configFactory, $filter, $timeout, fontFactor) {
+    .directive('mvText', function(configFactory, $filter, $timeout, fontFactor, gridChecker) {
       return {
         restrict: 'E',
         replace: true,
@@ -32,12 +30,10 @@ angular
             });
           }
 
-          var resizer = function() {
+          function resizer() {
             console.log(scope.content.length);
             var optimumSize = Math.sqrt(element[0].clientWidth * element[0].clientHeight / scope.content.length);
             var newSize = Math.max(Math.min(optimumSize * fontFactor.factor, scope.config.params.fontMax), scope.config.params.fontMin);
-
-
 
             scope.textStyles.fontSize = newSize + 'px';
           };
@@ -47,12 +43,17 @@ angular
             console.log('content', scope.content);
 
             $timeout(resizer(), 1000);
-            // Set single or multi-line text
-
 
             angular.forEach(scope.config.styles, function(style) {
               scope.containerStyles[style.cssProperty] = style.value;
             });
+
+            console.log('checky',gridChecker.check(scope.path, 'left'))
+            scope.containerStyles.left = gridChecker.check(scope.path, 'left') * (100/24) + '%';
+            scope.containerStyles.top = gridChecker.check(scope.path, 'top') * (100/24) + '%';
+            scope.containerStyles.width = gridChecker.check(scope.path, 'width') * (100/24) + '%';
+            scope.containerStyles.height = gridChecker.check(scope.path, 'height') * (100/24) + '%';
+            console.log('containerStyles', scope.containerStyles);
           }
         }
       }

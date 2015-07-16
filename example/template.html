@@ -1,7 +1,7 @@
-<div class="home" ng-controller="templateCtrl">
+<div class="home" ng-controller="templateCtrl" mv-grid="mainWrapper">
   <mv-image class="left-image" path="mainImage"></mv-image>
-  <div class="body-holder move-scroll">
-    <div class="text-box text-center">
+  <div class="body-holder move-scroll" mv-grid="moveScroll">
+    <div class="text-box text-center" mv-grid="textBox">
       <mv-text class="header-text" path="headerText"></mv-text>
       <mv-text class="body-text" path="bodyText"></mv-text>
     </div>

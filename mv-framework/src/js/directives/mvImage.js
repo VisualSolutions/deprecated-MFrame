@@ -4,7 +4,7 @@
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvImage', function(configFactory, $filter) {
+    .directive('mvImage', function(configFactory, $filter, gridChecker) {
       return {
         restrict: 'E',
         replace: true,
@@ -66,6 +66,11 @@ angular
                 scope.containerStyles[style.cssProperty] = style.value;
               }
             });
+
+            scope.containerStyles.left = gridChecker.check(scope.path, 'left') * (100/24) + '%';
+            scope.containerStyles.top = gridChecker.check(scope.path, 'top') * (100/24) + '%';
+            scope.containerStyles.width = gridChecker.check(scope.path, 'width') * (100/24) + '%';
+            scope.containerStyles.height = gridChecker.check(scope.path, 'height') * (100/24) + '%';
           }
         }
       }

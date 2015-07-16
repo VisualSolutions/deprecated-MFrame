@@ -1,6 +1,4 @@
-/**
- * Created by alex.depatie on 6/29/15.
- */
+
 'use strict';
 
 angular.module('mvFramework')
@@ -10,6 +8,7 @@ angular.module('mvFramework')
       scope.components = [];
 
       scope.setConfig = setConfig;
+      scope.getConfig = getConfig;
 
       return scope;
 
@@ -17,14 +16,15 @@ angular.module('mvFramework')
 
 
       function setConfig(configs) {
-        if(typeof configs === "array") {
+        if(configs instanceof Array) {
           configs.map(function(val) {
+            console.log('config value', val);
             checkConfig(val);
-          })
+          });
         } else {
           checkConfig(configs);
         }
-
+        console.log('config set', scope.components);
         function checkConfig(config) {
           if(!scope.components.some(function(val, index, array) {
                 if(val.pathName === config.pathName) {
@@ -36,5 +36,11 @@ angular.module('mvFramework')
             scope.components.push(config);
           }
         }
+      }
+
+      function getConfig(pathName) {
+        return scope.components.filter(function(component) {
+          return component.pathName === pathName
+        })[0];
       }
     });

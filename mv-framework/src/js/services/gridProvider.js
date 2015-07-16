@@ -1,6 +1,4 @@
-/**
- * Created by alex.depatie on 5/22/15.
- */
+
  'use strict';
 angular
     .module('mvFramework')
@@ -11,15 +9,12 @@ angular
 
       scope.setupGrid = setupGrid;
 
-
       return scope;
 
       ///////
 
       function setupGrid(windowHeight, windowWidth) {
-        scope.grid.class = setRatioClass(windowHeight / windowWidth);
-        scope.grid.unitHeight = windowHeight / 24;
-        scope.grid.unitWidth = windowWidth / 24;
+        scope.grid.class = setRatioClass(windowWidth / windowHeight);
       }
 
       function setRatioClass(ratio) {
