@@ -80,7 +80,7 @@ The grid system divides elements (including the window) into a 24x24 grid and al
   }
 }
         ````
-`myElement` is and ID (created by the developer) that is added to the element through the `mv-grid` HTML attribute. For `mv-text` and `mv-image` this value is the same path used to assign its configuration value.
+`myElement` is an ID (created by the developer) that is added to the element through the `mv-grid` HTML attribute. For `mv-text` and `mv-image` this value is the same path used to assign its configuration value.
 
 `<div class="foo" mv-grid="myElement"></div>`
 
