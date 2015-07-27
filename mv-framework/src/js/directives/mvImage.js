@@ -32,10 +32,15 @@ angular
           }
 
           function setupConfig() {
-            scope.content = scope.config.params.value;
+            scope.content = 'images/' + scope.config.params.value;
 
             var imageElement = angular.element(element.children()[0]);
-            var ratioCheck = imageElement[0].clientWidth > imageElement[0].clientHeight;
+
+            scope.containerStyles.left = gridChecker.check(scope.path, 'left') * (100/24) + '%';
+            scope.containerStyles.top = gridChecker.check(scope.path, 'top') * (100/24) + '%';
+            scope.containerStyles.width = gridChecker.check(scope.path, 'width') * (100/24) + '%';
+            scope.containerStyles.height = gridChecker.check(scope.path, 'height') * (100/24) + '%';
+            var ratioCheck = element[0].clientWidth > element[0].clientHeight;
 
             switch(scope.config.params.position) {
               case 'fit':
@@ -62,15 +67,13 @@ angular
             scope.imageStyles.WebkitTransform = rotation;
 
             angular.forEach(scope.config.styles, function(style) {
-              if(style.name !== 'Rotation') {
+              if(style.name !== 'Rotation' ) {
                 scope.containerStyles[style.cssProperty] = style.value;
               }
             });
+            //scope.containerStyles.lineHeight = element[0].clientHeight;
 
-            scope.containerStyles.left = gridChecker.check(scope.path, 'left') * (100/24) + '%';
-            scope.containerStyles.top = gridChecker.check(scope.path, 'top') * (100/24) + '%';
-            scope.containerStyles.width = gridChecker.check(scope.path, 'width') * (100/24) + '%';
-            scope.containerStyles.height = gridChecker.check(scope.path, 'height') * (100/24) + '%';
+
           }
         }
       }
@@ -81,7 +84,7 @@ angular
     .run(['$templateCache', function($templateCache) {
       $templateCache.put('template/mv-image.html',
         '<div class="mv-image" ng-style="containerStyles">' +
-        '  <div class="image-helper"><img ng-style="imageStyles" ng-src="images/{{content}}" alt="{{path}}"/></div>' +
+        '  <div class="image-helper"><img ng-style="imageStyles" ng-src="{{content}}" alt="{{path}}"/></div>' +
         '</div>'
       )
 }]);

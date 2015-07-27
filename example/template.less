@@ -12,6 +12,9 @@ html {
   }
 }
 
+body {
+  background: #000;
+}
 
 
 .home,
@@ -22,62 +25,43 @@ html {
   max-width: 1920px;
 }
 .home {
-
-    background: #fff;
-   background-image: url('../images/bg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url('../images/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .body-holder {
   overflow: hidden;
-  float: left;
   display: inline-block;
-  position: relative;
-  margin-top: 100px;
-  width: 62%;
+  position: absolute;
   height: auto;
-  //transform: translate3d(1600px, 0, 0);
-  //-webkit-transform: translate3d(1600px, 0, 0);
   .text-box {
+    overflow: hidden;
     z-index: 50;
     position: absolute;
-    left: 16.5%;
-    top: 18%;
-    width: 67%;
-    height: 523px;
     .header-text {
       font-family: 'almendra_scbold_italic', serif;
-      font-size: 62px;
-      margin-bottom: 30px;
     }
     .body-text {
       font-family: 'almendraitalic', serif;
-      font-size: 30px;
-      height: calc(~"100% - 78px");
-      width: 100%;
-      line-height: 1.5
+      > span {
+      }
     }
   }
   .scroll {
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 }
 
 .left-image {
   overflow: hidden;
   display: inline-block;
-  //width: calc(~"37.5% - 100px");
-  //margin-left: 100px;
-  //height: 100%;
-  min-height: 10px;
-  //margin-top: 100px;
+  position: absolute;
   float: left;
   text-align: right;
   .image-helper {
     display: block;
-    min-height: 10px;
   }
 
 }
@@ -85,28 +69,28 @@ html {
 
 
 @media(max-width: 1280px) and (min-aspect-ratio: 10/17) {
-  /* CSS for high-density screens */
   .home {
     background-image: url('../images/bg_720.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     .main .home {
-      .image-holder {
-        margin-top:100px;
-      }
-      .body-holder {
-        margin-top: 10px;
-      }
+
     }
   }
 }
 
 @media(max-aspect-ratio: 10/11) and (max-width: 720px){
   .home {
-    background-image: url('../images/bg_pt_720.png')
+    background-image: url('../images/bg_pt_720.png');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 @media(max-aspect-ratio: 10/11) and (min-width: 721px){
   body {
-    background-image: url('../images/bg_pt.png')
+    background-image: url('../images/bg_pt.png');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 
@@ -117,19 +101,23 @@ html {
 
 
   ////
-
+[mv-grid] {
+  position: absolute;
+}
 .mv-text {
   position: absolute;
   overflow: hidden;
   height: auto;
   > span {
+    line-height: 1 !important;
     text-decoration: inherit;
     font-style: inherit;
     font-variant: inherit;
     display: inline-block;
     word-spacing: normal;
     width: 100%;
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
   }
 }
 
@@ -150,8 +138,4 @@ html {
       margin: auto;
     }
   }
-}
-
-[attr="mv-grid"] {
-  position: absolute;
 }

@@ -15,6 +15,7 @@ angular
 
       function setupGrid(windowHeight, windowWidth) {
         scope.grid.class = setRatioClass(windowWidth / windowHeight);
+        console.log('Ratio Class', scope.grid.class);
       }
 
       function setRatioClass(ratio) {

@@ -5,7 +5,7 @@ angular
   .factory('fontFactor', function() {
     var scope = this;
 
-    scope.factor = 1.2;
+    scope.factor = .95;
 
     scope.setFactor = setFactor;
 

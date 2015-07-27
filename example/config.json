@@ -17,7 +17,7 @@
       "params": {
         "locked": false,
         "defaults": "Longjohn Silver",
-        "value": "Edward 'Blackbeard' Teech",
+        "value": "Edward Blackbeard",
         "maxCharacters": 60,
         "fontMin": 32,
         "fontMax": 120,
@@ -61,6 +61,12 @@
           "locked": true,
           "cssProperty": "color"
         },
+        "verticalAlign": {
+          "name": "Vertical Alignment",
+          "options": ["top", "bottom", "middle", "baseline"],
+          "value": "middle",
+          "cssProperty": "verticalAlign"
+        },
         "backgroundColor": {
           "name": "Background Color",
           "value": "none",
@@ -113,6 +119,12 @@
           "value": "normal",
           "locked": true,
           "cssProperty": "fontVariant"
+        },
+        "opacity": {
+          "name": "Opacity",
+          "value": "1",
+          "locked": false,
+          "cssProperty": "opacity"
         },
         "textTransform": {
           "name": "Text Transform",
@@ -155,10 +167,10 @@
       "params": {
         "locked": false,
         "defaults": "Here's some juicy pirate details...",
-        "value": "This be the scally-wag who is most commonly associated with pirates of the 'Golden Age', YAARRR!! It be Blackbeard who helmed the 'Queen Anne's Revenge' and sailed from the West Indies all the way to Charleston, South Carolina, where he promoted himself to 'Commodore', sinking and raiding any ship along his path . The Queen Anne met her fate off the coast of Ocracoke Island, North Carolina when Lieutenant Robert Maynard of the HMS Pearl tracked her down and ambushed her. Blackbeard is said have been shot no fewer than 5 and stabbed no fewer than 20 times before the battle was over.",
+        "value": "This be the scally-wag who had a lot of text in his paragraph",
         "maxCharacters": 600,
         "fontMin": 24,
-        "fontMax": 34,
+        "fontMax": 100,
         "sizeFactor": 1.2,
         "blacklist": {
           "words": [
@@ -186,7 +198,7 @@
               "factor": 1.3
             }
           ],
-          "value": "almendraitalic",
+          "value": "Helvetica",
           "locked": false,
           "cssProperty": "fontFamily"
         },
@@ -195,6 +207,18 @@
           "options": ["normal", "nowrap"],
           "value": "normal",
           "cssProperty": "whiteSpace"
+        },
+        "opacity": {
+          "name": "Opacity",
+          "value": "1",
+          "locked": false,
+          "cssProperty": "opacity"
+        },
+        "verticalAlign": {
+          "name": "Vertical Alignment",
+          "options": ["top", "bottom", "middle"],
+          "value": "top",
+          "cssProperty": "verticalAlign"
         },
         "textColor": {
           "name": "Text Color",
@@ -216,7 +240,7 @@
             "right",
             "justify"
           ],
-          "value": "center",
+          "value": "left",
           "locked": true,
           "cssProperty": "textAlign"
         },
@@ -247,13 +271,18 @@
         "fontVariant": {
           "name": "Font Case",
           "options": [
-            {"name": "All Caps", "value": "all-caps"},
             {"name": "Small Caps", "value": "small-caps"},
             {"name": "Normal", "value": "normal"}
           ],
           "value": "normal",
           "locked": true,
           "cssProperty": "fontVariant"
+        },
+        "opacity": {
+          "name": "Opacity",
+          "value": "1",
+          "locked": false,
+          "cssProperty": "opacity"
         },
         "textTransform": {
           "name": "Text Transform",
@@ -297,7 +326,7 @@
         "locked": false,
         "defaults": "",
         "value": "photo_blackbeard.png",
-        "position": "center"
+        "position": "fit"
       },
       "styles": {
         "opacity": {
@@ -309,19 +338,19 @@
         "transform": {
           "name": "Rotation",
           "locked": false,
-          "value": "rotate(90deg)",
+          "value": "rotate(0deg)",
           "cssProperty": "transform"
         },
         "wTransform": {
           "name": "Rotation",
           "locked": false,
-          "value": "rotate(90deg)",
+          "value": "rotate(0deg)",
           "cssProperty": "WebkitTransform"
         },
         "backgroundColor": {
           "name": "Background Color",
           "locked": true,
-          "value": "none",
+          "value": "#af2323",
           "cssProperty": "backgroundColor"
         }
       },
