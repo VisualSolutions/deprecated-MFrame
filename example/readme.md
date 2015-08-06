@@ -97,3 +97,57 @@ When elements are nested within each other, the grid for the child element will 
   3. Play around with the values (0 - 24) and refresh the page in different aspect ratios to see the results.
 
 Chances are that you are going to change a number and it's going to make everything look awful because the element is in a weird place. Try to visualize how you want the template to look and tweak the numbers based on that instead of entering random numbers. Also remember that certain elements are nested within each other. Refer to the `template.html` file to see the structure of elements on the page.
+
+
+###Sprint 3 Features
+
+####Animation System
+
+The animation system provides animation settings from the 'config.json' file and allows for components to play these
+animations. There are three animation stages for each component. Intro - The animation played on entrance, Loop - The
+ animation played the entire time the element is on the screen, and Outro - The animation played when the template is
+  about to change.
+
+  In each component in the 'config.json' file, you will see a section labeled 'animation'
+
+````javascript
+"animation": {
+        "name": "Basic Fade In",
+        "intro": {
+          "animation": "fadeIn",
+          "timingFunction": "ease-out",
+          "duration": 4
+        },
+        "loop": {
+            "animation": "jello",
+            "timingFunction": "linear",
+            "duration": 4
+        },
+        "outro": {
+            "animation": "fadeOut",
+            "timingFunction": "ease-in",
+            "duration": 4
+        }
+      }
+````
+
+For each animation stage there is an animation name, timing function, and duration. The animation name is a CSS class
+ that is either included in [animate.css](https://daneden.github.io/animate.css/) or made special by me. These
+ animations may not appear correct while looping (since I didn't make them, and they weren't made for that) so if you
+ want to you can make a note of it and I'll edit it, or I will fix them on a per-need basis. There are many.
+
+ The timing functions are:
+    -linear
+    -ease-in
+    -ease-out
+    -ease
+    -ease-in-out
+
+ To test the system:
+
+    1. Open `config.json` in a text editor
+    2. Find the component you want to animate
+    3. Look at the [animate.css](https://daneden.github.io/animate.css/) site to determine an animation name.
+    4. Choose a timing function from the list above
+    5. Set a duration
+    6. Save and refresh (run grunt if you haven't already)
