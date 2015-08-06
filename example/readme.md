@@ -137,11 +137,11 @@ For each animation stage there is an animation name, timing function, and durati
  want to you can make a note of it and I'll edit it, or I will fix them on a per-need basis. There are many.
 
  The timing functions are:
-    -linear
-    -ease-in
-    -ease-out
-    -ease
-    -ease-in-out
+    linear,
+    ease-in,
+    ease-out,
+    ease,
+    ease-in-out,
 
  To test the system:
 
