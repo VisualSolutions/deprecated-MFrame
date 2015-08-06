@@ -149,5 +149,5 @@ For each animation stage there is an animation name, timing function, and durati
 2. Find the component you want to animate
 3. Look at the [animate.css](https://daneden.github.io/animate.css/) site to determine an animation name.
 4. Choose a timing function from the list above
-5. Set a duration
+5. Set a duration (0.1 - 10.0)
 6. Save and refresh (run grunt if you haven't already)
