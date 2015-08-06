@@ -145,9 +145,9 @@ For each animation stage there is an animation name, timing function, and durati
 
  To test the system:
 
-    1. Open `config.json` in a text editor
-    2. Find the component you want to animate
-    3. Look at the [animate.css](https://daneden.github.io/animate.css/) site to determine an animation name.
-    4. Choose a timing function from the list above
-    5. Set a duration
-    6. Save and refresh (run grunt if you haven't already)
+1. Open `config.json` in a text editor
+2. Find the component you want to animate
+3. Look at the [animate.css](https://daneden.github.io/animate.css/) site to determine an animation name.
+4. Choose a timing function from the list above
+5. Set a duration
+6. Save and refresh (run grunt if you haven't already)
