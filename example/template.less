@@ -100,7 +100,7 @@ body {
 
 
 
-  ////
+  //// Component Styles
 [mv-grid] {
   position: absolute;
 }
@@ -139,3 +139,49 @@ body {
     }
   }
 }
+
+
+//// Animations
+
+.alternate {
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+
+.ease-in {
+  -webkit-animation-timing-function: ease-in;
+  animation-timing-function: ease-in;
+}
+
+.ease-out {
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+}
+
+.linear {
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+.ease-in-out {
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+}
+
+.ease {
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+}
+
+.loop(@counter: 10) when (@counter > 0) {
+  @big-number: @counter * 10;
+  .duration-@{big-number} {
+    -webkit-animation-duration: unit(@counter, s);
+    animation-duration: unit(@counter, s);
+  }
+
+  .loop((@counter - 0.1));
+
+}
+
+.loop();

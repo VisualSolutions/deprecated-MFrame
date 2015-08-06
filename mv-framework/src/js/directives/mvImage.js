@@ -4,7 +4,7 @@
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvImage', function(configFactory, $filter, gridChecker) {
+    .directive('mvImage', function(configFactory, $filter, gridChecker, $animate, $timeout) {
       return {
         restrict: 'E',
         replace: true,
@@ -21,6 +21,7 @@ angular
 
           scope.getConfig();
 
+          scope.$on('animation-start', initAnimations);
           /////
 
           function getConfig() {
@@ -74,6 +75,57 @@ angular
             //scope.containerStyles.lineHeight = element[0].clientHeight;
 
 
+          }
+
+          function initAnimations() {
+            if(scope.config.animation) {
+
+              $animate.addClass(element,
+                  'animated ' +
+                  scope.config.animation.intro.animation +
+                  ' ' +
+                  scope.config.animation.intro.timingFunction +
+                  ' duration-' +
+                  scope.config.animation.intro.duration * 10)
+                  .then(function() {
+
+                    element.removeClass(
+                        scope.config.animation.intro.animation +
+                        ' ' +
+                        scope.config.animation.intro.timingFunction +
+                        ' duration-' +
+                        scope.config.animation.intro.duration * 10
+                    );
+
+                    $animate.addClass(element,
+                        scope.config.animation.loop.animation +
+                        ' infinite ' +
+                        scope.config.animation.loop.timingFunction +
+                        ' duration-' +
+                        scope.config.animation.loop.duration * 10
+                    );
+
+                    scope.$on('animation-ending', function() {
+
+                      $timeout(function() {
+                        element.removeClass(
+                            scope.config.animation.loop.animation +
+                            ' infinite ' +
+                            scope.config.animation.loop.timingFunction +
+                            ' duration-' +
+                            scope.config.animation.loop.duration * 10
+                        );
+
+                        $animate.addClass(element,
+                            scope.config.animation.outro.animation +
+                            ' duration-' +
+                            scope.config.animation.outro.duration * 10
+                        );
+
+                      }, (10 - scope.config.animation.outro.duration) * 1000);
+                    })
+                  })
+            }
           }
         }
       }

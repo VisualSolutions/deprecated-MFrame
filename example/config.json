@@ -1,5 +1,5 @@
 {
-
+  "duration": 20,
   "components": [
     {
       "type": "text",
@@ -138,18 +138,24 @@
           "cssProperty": "textTransform"
         }
       },
-      "animations": [
-        {
-          "name": "Basic Fade In",
-          "intro": {
-            "animation": "fade-in",
+      "animation": {
+        "name": "Basic Fade In",
+        "intro": {
+          "animation": "fadeIn",
+          "timingFunction": "ease-out",
+          "duration": 4
+        },
+        "loop": {
+            "animation": "jello",
+            "timingFunction": "linear",
+            "duration": 4
+        },
+        "outro": {
+            "animation": "fadeOut",
             "timingFunction": "ease-in",
             "duration": 4
-          },
-          "loop": {},
-          "outro": {}
         }
-      ]
+      }
     },
     {
       "type": "text",
@@ -296,18 +302,24 @@
           "cssProperty": "textTransform"
         }
       },
-      "animations": [
-        {
-          "name": "Basic Fade In",
-          "intro": {
-            "animation": "fade-in",
-            "timingFunction": "ease-in",
-            "duration": 4
-          },
-          "loop": {},
-          "outro": {}
+      "animation": {
+        "name": "Basic Fade In",
+        "intro": {
+          "animation": "fadeIn",
+          "timingFunction": "ease-out",
+          "duration": 4
+        },
+        "loop": {
+          "animation": "jello",
+          "timingFunction": "linear",
+          "duration": 4
+        },
+        "outro": {
+          "animation": "fadeOut",
+          "timingFunction": "ease-in",
+          "duration": 4
         }
-      ]
+      }
     },
     {
       "type": "image",
@@ -354,22 +366,24 @@
           "cssProperty": "backgroundColor"
         }
       },
-      "animations": [
-        {
-          "name": "Basic Fade In - out",
-          "intro": {
-            "animation": "fade-in",
-            "timingFunction": "ease-out",
-            "duration": 4
-          },
-          "loop": {},
-          "outro": {
-            "animation": "fade-out",
-            "timingFunction": "ease-in",
-            "duration": 4
-          }
+      "animation": {
+        "name": "Basic Fade In",
+        "intro": {
+          "animation": "fadeIn",
+          "timingFunction": "ease-out",
+          "duration": 4
+        },
+        "loop": {
+          "animation": "jello",
+          "timingFunction": "linear",
+          "duration": 4
+        },
+        "outro": {
+          "animation": "fadeOut",
+          "timingFunction": "ease-in",
+          "duration": 4
         }
-      ]
+      }
     }
   ]
 }

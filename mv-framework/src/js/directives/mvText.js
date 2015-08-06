@@ -2,7 +2,7 @@
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvText', function(configFactory, $filter, $timeout, fontFactor, gridChecker) {
+    .directive('mvText', function($interval, configFactory, $filter, $timeout, fontFactor, gridChecker, $animate) {
       return {
         restrict: 'E',
         replace: true,
@@ -18,6 +18,8 @@ angular
           scope.setupConfig = setupConfig;
 
           scope.getConfig();
+
+          scope.$on('animation-start', initAnimations);
 
           /////
 
@@ -36,7 +38,7 @@ angular
             var newSize = Math.max(Math.min(optimumSize * fontFactor.factor, scope.config.params.fontMax), scope.config.params.fontMin);
 
             scope.textStyles.fontSize = newSize + 'px';
-          };
+          }
 
           function setupConfig() {
             scope.content = scope.config.params.value;
@@ -67,6 +69,58 @@ angular
               }, 30);
             }, 0);
           }
+
+          function initAnimations() {
+            if(scope.config.animation) {
+
+              $animate.addClass(element,
+                  'animated ' +
+                  scope.config.animation.intro.animation +
+                  ' ' +
+                  scope.config.animation.intro.timingFunction +
+                  ' duration-' +
+                  scope.config.animation.intro.duration * 10)
+              .then(function() {
+
+                element.removeClass(
+                    scope.config.animation.intro.animation +
+                    ' ' +
+                    scope.config.animation.intro.timingFunction +
+                    ' duration-' +
+                    scope.config.animation.intro.duration * 10
+                );
+
+                $animate.addClass(element,
+                    scope.config.animation.loop.animation +
+                    ' infinite ' +
+                    scope.config.animation.loop.timingFunction +
+                    ' duration-' +
+                    scope.config.animation.loop.duration * 10
+                );
+
+                scope.$on('animation-ending', function() {
+
+                  $timeout(function() {
+                    element.removeClass(
+                        scope.config.animation.loop.animation +
+                        ' infinite ' +
+                        scope.config.animation.loop.timingFunction +
+                        ' duration-' +
+                        scope.config.animation.loop.duration * 10
+                    );
+
+                    $animate.addClass(element,
+                        scope.config.animation.outro.animation +
+                        ' duration-' +
+                        scope.config.animation.outro.duration * 10
+                    );
+
+                  }, (10 - scope.config.animation.outro.duration) * 1000);
+                })
+              })
+            }
+          }
+
         }
       }
     });

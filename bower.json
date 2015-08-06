@@ -6,8 +6,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "ngFitText": "~3.3.3",
     "angular": "1.4.1",
-    "angular-animate": "1.4.1"
+    "angular-animate": "1.4.1",
+    "animate-css": "~3.4.0"
   }
 }
