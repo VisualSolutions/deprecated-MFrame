@@ -1,5 +1,5 @@
 {
-  "duration": 20,
+  "duration": 30,
   "components": [
     {
       "type": "text",
@@ -141,7 +141,7 @@
       "animation": {
         "name": "Basic Fade In",
         "intro": {
-          "animation": "fadeIn",
+          "animation": "flipInX",
           "timingFunction": "ease-out",
           "duration": 4
         },

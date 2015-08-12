@@ -9,8 +9,8 @@ angular.module('mvFramework')
 
       $timeout(function() {
         scope.$broadcast('animation-ending');
-      }, config.duration*1000 - 10000);
-    }
+      }, config.duration * 1000 - 10000);
+    };
 
 
     return this;
