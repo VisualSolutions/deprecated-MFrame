@@ -88,6 +88,9 @@ body {
     background-size: cover;
   }
 }
+body {
+  overflow: hidden;
+}
 [mv-grid] {
   position: absolute;
 }

@@ -14,6 +14,12 @@ module.exports = function(grunt) {
       }
     },
     watch: {
+      grunt: {
+        files: ['Gruntfile.js'],
+        options: {
+          livereload: true
+        }
+      },
       html: {
         files: ['example/**/*.html'],
         options: {
@@ -23,13 +29,13 @@ module.exports = function(grunt) {
       },
       testjs: {
         files: ['example/template.js', 'example/config.json', 'example/*.js'],
-        tasks:['uglify'],
         options: {
           livereload: true
         }
       },
       js: {
-        files: ['mv-framework/scripts/src/**/*.js'],
+        files: ['src/js/**/*.js'],
+        tasks: ['uglify', 'copy:js'],
         options: {
           livereload: true
         }
@@ -55,7 +61,7 @@ module.exports = function(grunt) {
       },
       framework: {
         files: {
-          'mv-framework/dist/mv.min.js': ['mv-framework/src/js/**/**.js']
+          'src/dist/mv.min.js': ['src/js/**/**.js']
         }
       }
     },
@@ -66,11 +72,17 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      test: {
+      bower: {
         expand: true,
-          src: ['mv-framework/dist/*', 'bower_components/**'],
+          src: ['bower_components/**'],
           dest: 'example/'
-      }
+      },
+      js: {
+        expand: true,
+        cwd: 'src/dist',
+        src: ['mv.min.js'],
+        dest: 'example/'
+    }
     },
     clean: {
       test: ['example/mv-framework', 'example/bower_components']
@@ -88,7 +100,7 @@ module.exports = function(grunt) {
   grunt.registerTask('example', [
       'build',
       'clean',
-      'copy:test',
+      'copy',
       'wiredep',
       'less',
       'connect',
