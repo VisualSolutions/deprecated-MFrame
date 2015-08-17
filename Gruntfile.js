@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         options: {
           livereload: 35729,
           open: true,
-          base: 'example'
+          base: 'test'
         }
       }
     },
@@ -21,14 +21,14 @@ module.exports = function(grunt) {
         }
       },
       html: {
-        files: ['example/**/*.html'],
+        files: ['test/**/*.html'],
         options: {
           livereload: true
         }
 
       },
       testjs: {
-        files: ['example/template.js', 'example/config.json', 'example/*.js'],
+        files: ['test/scripts/**/*.js', 'test/config.json', ],
         options: {
           livereload: true
         }
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         }
       },
       less: {
-        files: ['example/*.less'],
+        files: ['test/styles/less/*.less'],
         tasks: ['less'],
         options: {
           livereload: true
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
     less: {
       test: {
         files: {
-          'example/template.css': 'example/template.less'
+          'test/styles/template.css': 'test/styles/less/template.less'
         }
       }
     },
@@ -67,25 +67,25 @@ module.exports = function(grunt) {
     },
     wiredep: {
       dev: {
-        src: ['example/index.html'],
-        directory: 'example/bower_components'
+        src: ['test/index.html'],
+        directory: 'test/bower_components'
       }
     },
     copy: {
       bower: {
         expand: true,
           src: ['bower_components/**'],
-          dest: 'example/'
+          dest: 'test/'
       },
       js: {
         expand: true,
         cwd: 'src/dist',
         src: ['mv.min.js'],
-        dest: 'example/'
+        dest: 'test/scripts/lib'
     }
     },
     clean: {
-      test: ['example/mv-framework', 'example/bower_components']
+      test: ['test/scripts/lib/mv-framework', 'test/bower_components']
     }
   });
 
@@ -94,10 +94,10 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('default', [
-    'example'
+    'test'
   ]);
 
-  grunt.registerTask('example', [
+  grunt.registerTask('test', [
       'build',
       'clean',
       'copy',

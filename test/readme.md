@@ -1,9 +1,84 @@
 #Framework Documentation
 
-##Installing dependencies
+##What is MFrame?
+MFrame is a AngularJS module framework for building MVision templates. It allows you to utilize reusable Angular
+directives as template media components. Underneath the components are services which do things like load and parse
+the config file, manage the playback of animations, and create aspect-ratio responsive templates that adapt to every
+screen (more on this later).
+
+
+Developers are not required to use MFrame in order to build their own Mvision HTML templates but it certainly makes the
+process much faster and easier. We will go over the extra steps required to wire-up your own config loader later on.
+
+##Dependencies
+MFrame doesn't require that you install any extra dependencies. However, it comes pre-bundled with AngularJS and
+[animate.css](https://daneden.github.io/animate.css/). If you are not familiar with either of these please spend some time reading through their documentation.
+ As this framework is built as an AngularJS module, it is required that you have an understanding Angular (What
+ directives are, How to make a module, How to use services).
+
+ If you are completely new to AngularJS, don't worry. This framework has been designed to be easy for a developer to
+ use. You don't need to be an AngularJS expert in order to use this and the steps will be laid out in detail in this
+  guide. With just this guide and the seed-template you should be able to setup a simple template DOM to style with
+  CSS in under an hour.
+
+ If you are completely new to HTML and JS, this is not for you.
+
+##Services
+###Config Loader
+This service handles the loading and parsing of the `mframe.json` file. This service is the simplest immediate
+benefit of using the framework. The config file contains the user defined attributes for every media component.
+Including content, JS functionality (image scaling, font scaling), and CSS styles. This will be outlined more when we
+talk about wiring up your own config loader.
+
+To use the service, just make sure that `mframe.json` is in the same directory as your `index.html`. We will
+handle the rest when we setup our components.
+
+###Grid System
+The grid system is a way of sizing and positioning elements based on the aspect ratio of the screen. It works by
+creating a 24x24 grid on the window and any element positioned within it. This is similar to [Twitter
+Bootstrap](www.getbootstrap.com) except that it handles vertical as well as horizontal units (and it works based on
+aspect ratio instead of
+window width).
+
+
+Use the gridConfig service within your controller (`/scripts/controllers/template.js`) to setup your grid
+configurations. Here's an example:
+
+
+    angular.module('myTemplate')
+      .controller('TemplateCtrl', function(gridConfig) {
+        gridConfig.setConfig(gridConfiguration);
+
+        var gridConfiguration = [
+          {
+            pathName: 'mainImage',
+            left: {
+              ls: 1,
+              pt: 1
+            },
+            top: {
+              ls: 2,
+              pt: 1
+            },
+            width: {
+              ls: 7,
+              pt: 22
+            },
+            height: {
+              ls: 18,
+              pt: 9
+            }
+          }
+        ];
+    });
+
+
+##Components
+Media components consist of HTML Element directives that handle MFrame services for you out of the box.
 
 
 
+##W.I.P...
 ###Install NodeJS
 
  [NodeJS Website](https://nodejs.org/)

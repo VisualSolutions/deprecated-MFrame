@@ -115,6 +115,7 @@ body {
   overflow: hidden;
   display: inline-block;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 .mv-image .image-helper {
   position: relative;

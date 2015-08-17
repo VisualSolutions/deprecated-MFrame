@@ -45,8 +45,8 @@ angular
 
             switch(scope.config.params.position) {
               case 'fit':
-              scope.imageStyles.height = ratioCheck ? '100%' : 'auto';
-              scope.imageStyles.width = ratioCheck ? 'auto' : '100%';
+                scope.imageStyles.height = ratioCheck ? '100%' : 'auto';
+                scope.imageStyles.width = ratioCheck ? 'auto' : '100%';
                 break;
               case 'fill':
                 scope.imageStyles.height = ratioCheck ? 'auto' : '100%';
@@ -81,14 +81,6 @@ angular
             if(scope.config.animation) {
 
               $timeout(function() {
-                element.removeClass(
-                    scope.config.animation.loop.animation +
-                    ' infinite ' +
-                    scope.config.animation.loop.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.loop.duration * 10
-                );
-
                 $animate.addClass(element,
                     scope.config.animation.outro.animation +
                     ' duration-' +

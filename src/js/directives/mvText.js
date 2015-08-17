@@ -1,5 +1,19 @@
+/***
+           ___          ___         ___        _____                 ___          ___        _____                  ___
+         /__/ \       /  /\       /  /\      /  /::\               /__/ \       /  /\      /  /::\     ___        /  /\
+        |  |::\     /  /::\     /  /::\    /  /:/\:\              |  |::\     /  /:/_    /  /:/\:\   /  /\      /  /::\
+       |  |:|:\   /  /:/\:\   /  /:/\:\  /  /:/  \:\             |  |:|:\   /  /:/ /\  /  /:/  \:\ /  /:/     /  /:/\:\
+    __|__|:|\:\ /  /:/  \:\ /  /:/  \:\/__/:/ \__\:|          __|__|:|\:\ /  /:/ /:/_/__/:/ \__\:/__/::\    /  /:/~/::\
+  /__/::::| \:/__/:/ \__\:/__/:/ \__\:\  \:\ /  /:/         /__/::::| \:/__/:/ /:/ /\  \:\ /  /:\__\/\:\__/__/:/ /:/\:\
+ \  \:\~~\__\\  \:\ /  /:\  \:\ /  /:/\  \:\  /:/          \  \:\~~\__\\  \:\/:/ /:/\  \:\  /:/   \  \:\/\  \:\/:/__\/
+ \  \:\      \  \:\  /:/ \  \:\  /:/  \  \:\/:/            \  \:\      \  \::/ /:/  \  \:\/:/     \__\::/\  \::/
+ \  \:\      \  \:\/:/   \  \:\/:/    \  \::/              \  \:\      \  \:\/:/    \  \::/      /__/:/  \  \:\
+ \  \:\      \  \::/     \  \::/      \__\/                \  \:\      \  \::/      \__\/       \__\/    \  \:\
+ \__\/       \__\/       \__\/                             \__\/       \__\/                             \__\/
+ */
 
- 'use strict';
+
+'use strict';
 angular
     .module('mvFramework')
     .directive('mvText', function($interval, configFactory, $filter, $timeout, fontFactor, gridChecker, $animate) {
@@ -74,13 +88,6 @@ angular
             if(scope.config.animation) {
 
               $timeout(function() {
-                element.removeClass(
-                    scope.config.animation.loop.animation +
-                    ' infinite ' +
-                    scope.config.animation.loop.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.loop.duration * 10
-                );
 
                 $animate.addClass(element,
                     scope.config.animation.outro.animation +
