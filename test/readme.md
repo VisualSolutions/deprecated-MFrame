@@ -25,20 +25,19 @@ MFrame doesn't require that you install any extra dependencies. However, it come
 
 ##Services
 ###Config Loader
-This service handles the loading and parsing of the `mframe.json` file. This service is the simplest immediate
-benefit of using the framework. The config file contains the user defined attributes for every media component.
-Including content, JS functionality (image scaling, font scaling), and CSS styles. This will be outlined more when we
-talk about wiring up your own config loader.
+This service handles the loading and parsing of the `mframe.json` file. This file contains the user defined
+attributes for every media component; including content, JS functionality (image scaling, font scaling), and CSS
+styles. This will be outlined more when we talk about wiring up your own config loader.
 
 To use the service, just make sure that `mframe.json` is in the same directory as your `index.html`. We will
 handle the rest when we setup our components.
 
 ###Grid System
-The grid system is a way of sizing and positioning elements based on the aspect ratio of the screen. It works by
-creating a 24x24 grid on the window and any element positioned within it. This is similar to [Twitter
-Bootstrap](www.getbootstrap.com) except that it handles vertical as well as horizontal units (and it works based on
-aspect ratio instead of
-window width).
+The grid system is a way of sizing and positioning elements based on the aspect ratio of the screen. This way you can
+ have the template behave differently if it is in portrait mode or landscape mode (or other more specific classes). It
+ works by creating a 24x24 grid on the window and any element positioned within it. This is similar to
+ [Twitter Bootstrap](www.getbootstrap.com) except that it handles vertical as well as horizontal units (and it works
+ based on aspect ratio instead of window width).
 
 
 Use the gridConfig service within your controller (`/scripts/controllers/template.js`) to setup your grid
@@ -72,9 +71,32 @@ configurations. Here's an example:
         ];
     });
 
+The `pathname` is a unique ID that you can name whatever you want. We will use this later to link the config to the
+component.
+
+`left, top, width, height` are all related to the size or position of the component and are part of a 48x48 grid.
+`ls`, and `pt` refer to *landscape* and *portrait*. The grid system detects the aspect ratio of the screen and
+returns it's corresponding class. The classes from tallest to shortest are:
+
+        spt    small portrait,
+        mpt    medium portrait,
+        lpt    large portrait,
+        pt     portrait (fullscreen),
+        tsq    tall square,
+        sq     square,
+        wsq    wide square,
+        ls     landscape(fullscreen),
+        lls    large landscape,
+        mls    medium landscape,
+        sls    small landscape
+
+In the configuration shown above, the component, 'mainImage', will be 7 grid units wide when the template is in
+landscape and 22 grid units wide when the template is in portrait mode. You can list any of the available classes in
+your config. Feel free to play around with the values inside the test template and see what happens to the different
+components when you refresh the page.
 
 ##Components
-Media components consist of HTML Element directives that handle MFrame services for you out of the box.
+Media components consist of Angular directives that handle MFrame services for you out of the box.
 
 
 
