@@ -6,22 +6,20 @@ angular
     .factory('configFactory', function(mvLoader, errorHandler, $q) {
       var scope = this;
 
-      loadConfig().then(function(data) {
-        scope.config = data
-      });
-
-
-
       scope.getComponentConfig = getComponentConfig;
-
+      scope.loadConfig = loadConfig;
 
       return scope;
 
       function loadConfig() {
         var d = $q.defer();
-        mvLoader.loadConfig().then(function(response) {
-          d.resolve(response.data);
-        });
+        if(scope.config === null || typeof scope.config === 'undefined') {
+          mvLoader.loadConfig().then(function(response) {
+            d.resolve(response.data);
+          });
+        } else {
+          d.resolve(scope.config);
+        }
         return d.promise;
       }
 

@@ -35,6 +35,7 @@ angular
 
           scope.$on('animation-start', initAnimations);
 
+
           /////
 
 
@@ -85,11 +86,17 @@ angular
           }
 
           function initAnimations(event, duration) {
+            var loopSkip = false;
+            if(scope.config === null) {
+              getConfig();
+            }
+
             if(scope.config.animation) {
 
               if(scope.config.animation.outro.duration + scope.config.animation.intro.duration > duration) {
                 scope.config.animation.outro.duration = duration / 2;
                 scope.config.animation.intro.duration = duration / 2;
+                loopSkip = true;
               }
 
               $timeout(function() {
@@ -99,6 +106,8 @@ angular
                     ' duration-' +
                     scope.config.animation.outro.duration * 10
                 ).then(function() {
+
+                     // clean up
                     });
 
 
@@ -121,16 +130,15 @@ angular
                     ' duration-' +
                     scope.config.animation.intro.duration * 10
                 );
-
-                $animate.addClass(element,
-                    scope.config.animation.loop.animation +
-                    ' infinite ' +
-                    scope.config.animation.loop.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.loop.duration * 10
-                );
-
-
+                if(!loopSkip) {
+                  $animate.addClass(element,
+                      scope.config.animation.loop.animation +
+                      ' infinite ' +
+                      scope.config.animation.loop.timingFunction +
+                      ' duration-' +
+                      scope.config.animation.loop.duration * 10
+                  );
+                }
               })
             }
           }

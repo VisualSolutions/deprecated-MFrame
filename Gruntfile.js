@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 
       },
       testjs: {
-        files: ['test/scripts/**/*.js', 'test/config.json', ],
+        files: ['test/scripts/**/*.js', 'test/config.json'],
         options: {
           livereload: true
         }
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         }
       },
       less: {
-        files: ['test/styles/less/*.less'],
+        files: ['test/styles/less/*.less', 'src/less/*.less'],
         tasks: ['less'],
         options: {
           livereload: true
@@ -53,6 +53,11 @@ module.exports = function(grunt) {
         files: {
           'test/styles/template.css': 'test/styles/less/template.less'
         }
+      },
+      build: {
+        files: {
+          'src/dist/mframe.css': 'src/less/mframe.less'
+        }
       }
     },
     uglify: {
@@ -61,7 +66,7 @@ module.exports = function(grunt) {
       },
       framework: {
         files: {
-          'src/dist/mv.min.js': ['src/js/**/**.js']
+          'src/dist/mframe.min.js': ['src/js/**/**.js']
         }
       }
     },
@@ -80,9 +85,15 @@ module.exports = function(grunt) {
       js: {
         expand: true,
         cwd: 'src/dist',
-        src: ['mv.min.js'],
+        src: ['mframe.min.js'],
         dest: 'test/scripts/lib'
-    }
+      },
+      less: {
+        expand: true,
+        cwd: 'src/dist',
+        src: ['mframe.css'],
+        dest: 'test/styles'
+      }
     },
     clean: {
       test: ['test/scripts/lib/mv-framework', 'test/bower_components']
@@ -100,9 +111,9 @@ module.exports = function(grunt) {
   grunt.registerTask('test', [
       'build',
       'clean',
+      'less',
       'copy',
       'wiredep',
-      'less',
       'connect',
       'watch'
   ]);
