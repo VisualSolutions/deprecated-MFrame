@@ -94,20 +94,37 @@ angular
             if(scope.config.animation) {
 
               if(scope.config.animation.outro.duration + scope.config.animation.intro.duration > duration) {
-                scope.config.animation.outro.duration = duration / 2;
-                scope.config.animation.intro.duration = duration / 2;
-                loopSkip = true;
+                scope.config.animation.outro.duration = 1;
+                scope.config.animation.intro.duration = 1;
               }
 
               $timeout(function() {
+                element.removeClass(
+                    scope.config.animation.intro.animation +
+                    ' ' +
+                    scope.config.animation.intro.timingFunction +
+                    ' duration-' +
+                    scope.config.animation.intro.duration * 10
+                );
+
+                element.removeClass(
+                    ' infinite ' +
+                    scope.config.animation.loop.timingFunction +
+                    ' duration-' +
+                    scope.config.animation.loop.duration * 10
+                );
 
                 $animate.addClass(element,
                     scope.config.animation.outro.animation +
+                    ' ' +
+                    scope.config.animation.outro.timingFunction +
                     ' duration-' +
                     scope.config.animation.outro.duration * 10
                 ).then(function() {
 
-                     // clean up
+                      if(scope.config.animation.outro.animation.length > 0) {
+                        element.addClass('no-display');
+                      }
                     });
 
 
@@ -121,25 +138,23 @@ angular
                   scope.config.animation.intro.timingFunction +
                   ' duration-' +
                   scope.config.animation.intro.duration * 10)
-              .then(function() {
+                  .then(function() {
 
-                element.removeClass(
-                    scope.config.animation.intro.animation +
-                    ' ' +
-                    scope.config.animation.intro.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.intro.duration * 10
-                );
-                if(!loopSkip) {
-                  $animate.addClass(element,
-                      scope.config.animation.loop.animation +
-                      ' infinite ' +
-                      scope.config.animation.loop.timingFunction +
-                      ' duration-' +
-                      scope.config.animation.loop.duration * 10
-                  );
-                }
-              })
+                    element.removeClass(
+                        scope.config.animation.intro.animation +
+                        ' ' +
+                        scope.config.animation.intro.timingFunction +
+                        ' duration-' +
+                        scope.config.animation.intro.duration * 10
+                    );
+                    $animate.addClass(element,
+                        scope.config.animation.loop.animation +
+                        ' infinite ' +
+                        scope.config.animation.loop.timingFunction +
+                        ' duration-' +
+                        scope.config.animation.loop.duration * 10
+                    );
+                  })
             }
           }
 

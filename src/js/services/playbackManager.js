@@ -30,7 +30,6 @@ angular.module('mvFramework')
 
           $timeout(function() {
             angular.element(elem).addClass('animated fadeOut');
-            $rootScope.$destroy();
             // This is where the 'player.endTemplate' will go
           }, configDuration * 1000);
         }, 100)
