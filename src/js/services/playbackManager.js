@@ -15,11 +15,26 @@
 'use strict';
 
 angular.module('mvFramework')
-  .factory('playbackManager', function($timeout, configFactory) {
+  .factory('playbackManager', function($timeout, configFactory, $rootScope) {
 
-    this.beginCycle = function(scope) {
-      var config = configFactory.config;
-      scope.$broadcast('animation-start', config.duration);
+
+    this.init = function(elem, componentScope) {
+      elem.style.visibility = 'hidden';
+
+      $timeout(function() {
+        var configDuration = angular.copy(configFactory.config).duration;
+        elem.style.visibility = 'visible';
+        beginCycle(componentScope, configDuration);
+        $timeout(function() {
+          angular.element(elem).addClass('animated fadeOut');
+          $rootScope.$destroy();
+          // This is where the 'player.endTemplate' will go
+        }, configDuration * 1000)
+      }, 100);
+
+      function beginCycle(scope, duration) {
+        scope.$broadcast('animation-start', duration);
+      }
     };
 
 

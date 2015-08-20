@@ -3,13 +3,7 @@
  */
 angular.module('frameworkTest')
   .controller('templateCtrl', function($scope, gridConfig, $timeout, $element, playbackManager, configFactory) {
-    $element[0].style.visibility = 'hidden';
-
-
-    $timeout(function() {
-      $element[0].style.visibility = 'visible';
-      playbackManager.beginCycle($scope);
-    }, 100);
+    playbackManager.init($element[0], $scope);
 
     gridConfig.setConfig([
       {

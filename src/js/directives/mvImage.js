@@ -80,6 +80,11 @@ angular
           function initAnimations(event, duration) {
             if(scope.config.animation) {
 
+              if(scope.config.animation.outro.duration + scope.config.animation.intro.duration > duration) {
+                scope.config.animation.outro.duration = duration / 2;
+                scope.config.animation.intro.duration = duration / 2;
+              }
+
               $timeout(function() {
                 $animate.addClass(element,
                     scope.config.animation.outro.animation +

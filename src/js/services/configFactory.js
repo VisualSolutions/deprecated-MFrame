@@ -21,7 +21,7 @@ angular
         var d = $q.defer();
         mvLoader.loadConfig().then(function(response) {
           d.resolve(response.data);
-        })
+        });
         return d.promise;
       }
 
