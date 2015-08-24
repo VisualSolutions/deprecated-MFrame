@@ -140,7 +140,56 @@ types of components available, are listed in the [component reference]().
 
 ##W.I.P...
 
+##Reference
 
+###Component Attributes
+
+####Text
+	<mv-text path=”pathName”></mv-text>
+
+Properties
+
+* **Label**: <multi string input> The name of the component that appears in mvision’s properties panel. The text
+component
+ can have multiple labels (one per language).
+
+* **Default Text**: <multi string input> The default text value or values for the component. Note: In the event there are multiple default text values, the text component becomes a drop down in MVision’s Properties panel and defaults to the first item in the list in the order they are listed in the HTML5 Template Editor. In the event default text is left blank, then there is not default text - user in MVision starts with a blank field.
+
+* **Max Characters**: <positive, non null number input> Maximum amount of text characters allowed, including spaces, tabs,
+ line returns etc. This number is used by the server to limit the number of characters a user can enter into the Text Field. This property is not used by the MV-Text component on the player side.
+
+* **Text Format**: <string - selected by radio input> Determines whether a text field can be single line or multi-line.
+
+* **Blacklist**: <multi string input> list of words to be filtered out of the text. For the MV-Text component, this list of strings is checked on the server side only to prevent users from entering blocked words. In the event a user types a blocked word, the MVision App will alert the user and fail to save the text value. This does not have any effect on the MV-Text Component on the player side.
+
+* **Master Blacklist**: <checkbox toggle> determines whether the Mvision Framework’s predefined list of words will be used
+ within the blacklist. As with the manual Blacklist described above, this has an effect on the server side only for the MV-Text Component (validation happens as the user enters text).
+
+* **Opacity**: <number between 0 and 100 - slider input> The transparency of the component: 0 indicates the component is
+not visible. 100 means the MV-Text component is solid.
+
+* **Font Family**: <string input> The font to be used for the text. If the specified font is not available on the target
+media player, the player will fall back to Open Sans.
+
+* **Text Color**: <string hexadecimal input> The color to be used for the text
+
+* **Text Alignment**: <string - radio input> The horizontal alignment of text within the component element. Possible
+values are Left (default), Right, Center and Justify.
+
+* **Vertical Alignment**: <string - radio input> The vertical alignment of text within a component element. Possible
+values are Top (default), Middle, Bottom.
+
+* **Bold**: <string - toggle button input> The font weight of the text
+
+* **Italic**: <string - toggle button input> The angle of the text
+
+* **Underline**: <string - toggle button input> A line that resides underneath the text
+
+* **Strikethrough**: <string - toggle button input> A line that goes through the text
+
+* **Background Color**: <string - hex color code> The color of the background of the component
+
+* **Font Case**: <string - radio input> This will be a dropdown with 4 items: normal, all caps, small caps, lower caps - if "normal" is selected, the text will appear as it is typed. If "all caps" is selected, the text is showed in upper case, regardless of how it is entered by the user.
 
 
 

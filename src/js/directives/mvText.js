@@ -41,7 +41,6 @@ angular
 
           function getConfig() {
             configFactory.getComponentConfig(scope.path).then(function(data) {
-              console.log(data);
               scope.config = data;
               setupConfig();
             });
@@ -49,7 +48,6 @@ angular
 
           function resizer() {
             var optimumSize = Math.sqrt(element[0].clientWidth * element[0].clientHeight / scope.content.length);
-              console.log('op size',optimumSize, 'width', element[0].clientWidth, 'height', element[0].clientHeight, 'length', scope.content.length);
             var newSize = Math.max(Math.min(optimumSize * fontFactor.factor, scope.config.params.fontMax), scope.config.params.fontMin);
 
             scope.textStyles.fontSize = newSize + 'px';
@@ -57,7 +55,6 @@ angular
 
           function setupConfig() {
             scope.content = scope.config.params.value;
-            console.log('content', scope.content);
 
 
             angular.forEach(scope.config.styles, function(style) {
@@ -68,15 +65,12 @@ angular
 
             scope.textStyles.verticalAlign = scope.config.styles["verticalAlign"].value;
 
-            console.log('textStyles', scope.textStyles);
-
             $timeout(function() {
 
               scope.containerStyles.left = gridChecker.check(scope.path, 'left') * (100/24) + '%';
               scope.containerStyles.top = gridChecker.check(scope.path, 'top') * (100/24) + '%';
               scope.containerStyles.width = gridChecker.check(scope.path, 'width') * (100/24) + '%';
               scope.containerStyles.height = gridChecker.check(scope.path, 'height') * (100/24) + '%';
-              console.log('containerStyles', scope.containerStyles, gridChecker.check(scope.path, 'left'));
 
               $timeout(function(){
                 scope.containerStyles.lineHeight = element[0].clientHeight + 'px';

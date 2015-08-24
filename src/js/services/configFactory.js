@@ -25,10 +25,8 @@ angular
 
       function getComponentConfig(path) {
         var d = $q.defer();
-        console.log('componentconfig called');
         if(scope.config === null || typeof scope.config === 'undefined') {
           loadConfig().then(function(data) {
-            console.log('the data', data);
             scope.config = data;
 
             d.resolve(scope.config.components.filter(function(val) {
@@ -37,7 +35,6 @@ angular
           })
         } else {
 
-            console.log('the data', scope.config);
           d.resolve(scope.config.components.filter(function(val) {
             return val.path === path;
           })[0]);

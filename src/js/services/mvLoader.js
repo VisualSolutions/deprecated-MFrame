@@ -12,9 +12,7 @@ angular
 
 
       function loadConfig() {
-        console.log('load config called');
         return $http.get('mframe.json').success(function(data) {
-              console.log(data);
               return data;
             }).error(function() {
               errorHandler.report(101);

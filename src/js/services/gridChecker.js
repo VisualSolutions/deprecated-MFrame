@@ -25,14 +25,12 @@ angular
         } else {
           console.log('Error: pathName is not a string');
         }
-        console.log('CompConfig', componentConfig);
+
         if(typeof componentConfig[prop][currentClass] !== "undefined") {
-          console.log('is defined', componentConfig[prop][currentClass], componentConfig[prop]);
           return componentConfig[prop][currentClass];
         } else {
           for(var k = classes.indexOf(currentClass); k < classes.length; k++) {
             if(typeof componentConfig[prop][classes[k]] !== 'undefined') {
-              console.log('not defined', componentConfig[prop][classes[k]]);
               return componentConfig[prop][classes[k]];
             }
           }
@@ -40,7 +38,6 @@ angular
 
 
         function getClasses(currentClass) {
-          console.log('get classes class', currentClass);
           if(currentClass.indexOf('ls') > -1) {
             return ['xsls', 'sls', 'mls', 'lls', 'ls', 'sq', 'pt', 'lpt', 'mpt', 'spt', 'xspt'];
           } else if(currentClass.indexOf('sq') > -1) {

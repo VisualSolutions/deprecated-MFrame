@@ -18,13 +18,12 @@ angular.module('mvFramework')
       function setConfig(configs) {
         if(configs instanceof Array) {
           configs.map(function(val) {
-            console.log('config value', val);
             checkConfig(val);
           });
         } else {
           checkConfig(configs);
         }
-        console.log('config set', scope.components);
+
         function checkConfig(config) {
           if(!scope.components.some(function(val, index, array) {
                 if(val.pathName === config.pathName) {

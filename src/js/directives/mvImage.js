@@ -26,7 +26,6 @@ angular
 
           function getConfig() {
             configFactory.getComponentConfig(scope.path).then(function(data) {
-              console.log(data);
               scope.config = data;
               setupConfig();
             });

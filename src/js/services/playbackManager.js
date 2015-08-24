@@ -24,12 +24,17 @@ angular.module('mvFramework')
       configFactory.loadConfig().then(function(data) {
         $timeout(function() {
           var configDuration = data.duration;
+
+          if(configDuration < 1) {
+            return;
+          }
+
           elem.style.visibility = 'visible';
 
           beginCycle(componentScope, configDuration);
 
           $timeout(function() {
-            angular.element(elem).addClass('animated fadeOut');
+            //angular.element(elem).addClass('animated fadeOut');
             // This is where the 'player.endTemplate' will go
           }, configDuration * 1000);
         }, 100)
