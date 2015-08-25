@@ -4,7 +4,7 @@
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvImage', function(configFactory, $filter, gridChecker, $animate, $timeout) {
+    .directive('mvImage', function(configFactory, $filter, gridChecker, $animate, $timeout, debugSelector, $rootScope, debugTimer) {
       return {
         restrict: 'E',
         replace: true,
@@ -18,6 +18,9 @@ angular
 
           scope.getConfig = getConfig;
           scope.setupConfig = setupConfig;
+
+          var timerName = 'image'+ scope.$id;
+
 
           scope.getConfig();
 
@@ -77,6 +80,7 @@ angular
           }
 
 
+
           function initAnimations(event, duration) {
             var loopSkip = false;
             if(scope.config === null) {
@@ -84,13 +88,17 @@ angular
             }
 
             if(scope.config.animation) {
-
+              if(debugSelector.debug === true){
+                debugTimer.setTimer(timerName + 'Intro');
+              }
               if(scope.config.animation.outro.duration + scope.config.animation.intro.duration > duration) {
                 scope.config.animation.outro.duration = 1;
                 scope.config.animation.intro.duration = 1;
+
               }
 
               $timeout(function() {
+
                 element.removeClass(
                     scope.config.animation.intro.animation +
                     ' ' +
@@ -99,13 +107,24 @@ angular
                     scope.config.animation.intro.duration * 10
                 );
 
+                if(debugSelector.debug === true){
+                  debugTimer.stopTimer(timerName + 'Intro');
+                }
                 element.removeClass(
+                    scope.config.animation.loop.animation +
                     ' infinite ' +
                     scope.config.animation.loop.timingFunction +
                     ' duration-' +
                     scope.config.animation.loop.duration * 10
                 );
 
+                if(debugSelector.debug === true){
+                  debugTimer.stopTimer(timerName + 'Loop');
+                }
+
+                if(debugSelector.debug === true){
+                  debugTimer.setTimer(timerName + 'Outro');
+                }
                 $animate.addClass(element,
                     scope.config.animation.outro.animation +
                     ' ' +
@@ -113,6 +132,9 @@ angular
                     ' duration-' +
                     scope.config.animation.outro.duration * 10
                 ).then(function() {
+                      if(debugSelector.debug === true) {
+                        debugTimer.stopTimer(timerName + 'Outro');
+                      }
 
                       if(scope.config.animation.outro.animation.length > 0) {
                         element.addClass('no-display');
@@ -123,6 +145,10 @@ angular
 
               }, (duration - scope.config.animation.outro.duration) * 1000);
 
+              if(debugSelector.debug === true){
+                debugTimer.setTimer(timerName + 'Intro');
+              }
+
               $animate.addClass(element,
                   'animated ' +
                   scope.config.animation.intro.animation +
@@ -131,7 +157,9 @@ angular
                   ' duration-' +
                   scope.config.animation.intro.duration * 10)
                   .then(function() {
-
+                    if(debugSelector.debug === true){
+                      debugTimer.stopTimer(timerName + 'Intro');
+                    }
                     element.removeClass(
                         scope.config.animation.intro.animation +
                         ' ' +
@@ -139,13 +167,19 @@ angular
                         ' duration-' +
                         scope.config.animation.intro.duration * 10
                     );
-                      $animate.addClass(element,
-                          scope.config.animation.loop.animation +
-                          ' infinite ' +
-                          scope.config.animation.loop.timingFunction +
-                          ' duration-' +
-                          scope.config.animation.loop.duration * 10
-                      );
+
+
+                    if(debugSelector.debug === true){
+                      debugTimer.setTimer(timerName + 'Loop');
+                    }
+
+                    $animate.addClass(element,
+                        scope.config.animation.loop.animation +
+                        ' infinite ' +
+                        scope.config.animation.loop.timingFunction +
+                        ' duration-' +
+                        scope.config.animation.loop.duration * 10
+                    );
                   })
             }
           }

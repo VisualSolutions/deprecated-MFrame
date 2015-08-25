@@ -15,7 +15,7 @@
 'use strict';
 
 angular.module('mvFramework')
-  .factory('playbackManager', function($timeout, configFactory, $rootScope) {
+  .factory('playbackManager', function($timeout, configFactory, $rootScope, debugSelector) {
 
 
     this.init = function(elem, componentScope) {
@@ -45,6 +45,7 @@ angular.module('mvFramework')
 
       function beginCycle(scope, duration) {
         scope.$broadcast('animation-start', duration);
+        $rootScope.$broadcast('debug-animation-start');
       }
     };
 

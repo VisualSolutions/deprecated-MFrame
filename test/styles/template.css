@@ -10,6 +10,22 @@
   font-weight: normal;
   font-style: normal;
 }
+.debug-panel {
+  z-index: 100000;
+  position: fixed;
+  left: 0;
+  height: 100%;
+  width: 20%;
+  opacity: 0.5;
+  background-color: #6D909C;
+}
+.debug-panel > ul {
+  width: 100%;
+}
+.debug-panel > ul > li {
+  width: 100%;
+  font-size: 24px;
+}
 body,
 html {
   width: 100%;

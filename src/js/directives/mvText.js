@@ -16,7 +16,7 @@
 'use strict';
 angular
     .module('mvFramework')
-    .directive('mvText', function($interval, configFactory, $filter, $timeout, fontFactor, gridChecker, $animate) {
+    .directive('mvText', function($interval, configFactory, $filter, $timeout, fontFactor, gridChecker, $animate, $rootScope, debugSelector, debugTimer) {
       return {
         restrict: 'E',
         replace: true,
@@ -30,6 +30,9 @@ angular
 
           scope.getConfig = getConfig;
           scope.setupConfig = setupConfig;
+
+
+          var timerName = 'text'+ scope.$id;
 
           scope.getConfig();
 
@@ -86,13 +89,17 @@ angular
             }
 
             if(scope.config.animation) {
-
+              if(debugSelector.debug === true){
+                debugTimer.setTimer(timerName + 'Intro');
+              }
               if(scope.config.animation.outro.duration + scope.config.animation.intro.duration > duration) {
                 scope.config.animation.outro.duration = 1;
                 scope.config.animation.intro.duration = 1;
+
               }
 
               $timeout(function() {
+
                 element.removeClass(
                     scope.config.animation.intro.animation +
                     ' ' +
@@ -101,13 +108,24 @@ angular
                     scope.config.animation.intro.duration * 10
                 );
 
+                if(debugSelector.debug === true){
+                  debugTimer.stopTimer(timerName + 'Intro');
+                }
                 element.removeClass(
+                    scope.config.animation.loop.animation +
                     ' infinite ' +
                     scope.config.animation.loop.timingFunction +
                     ' duration-' +
                     scope.config.animation.loop.duration * 10
                 );
 
+                if(debugSelector.debug === true){
+                  debugTimer.stopTimer(timerName + 'Loop');
+                }
+
+                if(debugSelector.debug === true){
+                  debugTimer.setTimer(timerName + 'Outro');
+                }
                 $animate.addClass(element,
                     scope.config.animation.outro.animation +
                     ' ' +
@@ -115,6 +133,9 @@ angular
                     ' duration-' +
                     scope.config.animation.outro.duration * 10
                 ).then(function() {
+                      if(debugSelector.debug === true) {
+                        debugTimer.stopTimer(timerName + 'Outro');
+                      }
 
                       if(scope.config.animation.outro.animation.length > 0) {
                         element.addClass('no-display');
@@ -125,6 +146,10 @@ angular
 
               }, (duration - scope.config.animation.outro.duration) * 1000);
 
+              if(debugSelector.debug === true){
+                debugTimer.setTimer(timerName + 'Intro');
+              }
+
               $animate.addClass(element,
                   'animated ' +
                   scope.config.animation.intro.animation +
@@ -133,7 +158,9 @@ angular
                   ' duration-' +
                   scope.config.animation.intro.duration * 10)
                   .then(function() {
-
+                    if(debugSelector.debug === true){
+                      debugTimer.stopTimer(timerName + 'Intro');
+                    }
                     element.removeClass(
                         scope.config.animation.intro.animation +
                         ' ' +
@@ -141,6 +168,12 @@ angular
                         ' duration-' +
                         scope.config.animation.intro.duration * 10
                     );
+
+
+                    if(debugSelector.debug === true){
+                      debugTimer.setTimer(timerName + 'Loop');
+                    }
+
                     $animate.addClass(element,
                         scope.config.animation.loop.animation +
                         ' infinite ' +

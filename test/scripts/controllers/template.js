@@ -2,9 +2,12 @@
  * Created by alex.depatie on 6/29/15.
  */
 angular.module('frameworkTest')
-  .controller('templateCtrl', function($scope, gridConfig, $timeout, $element, playbackManager, configFactory) {
-    playbackManager.init($element[0], $scope);
+  .controller('templateCtrl', function($scope, gridConfig, $timeout, $element, playbackManager, debugSelector) {
+      debugSelector.setDebug(true);
+      playbackManager.init($element[0], $scope);
 
+
+      //rssLoader.loadRSS();
     gridConfig.setConfig([
       {
         pathName: 'mainImage',
