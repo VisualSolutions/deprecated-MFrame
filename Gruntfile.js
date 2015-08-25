@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 
       },
       testjs: {
-        files: ['test/scripts/**/*.js', 'test/config.json'],
+        files: ['test/scripts/**/*.js', 'test/mframe.json'],
         options: {
           livereload: true
         }
