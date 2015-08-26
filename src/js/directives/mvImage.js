@@ -4,7 +4,7 @@
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvImage', function(configFactory, $filter, gridChecker, $animate, $timeout, debugSelector, $rootScope, debugTimer) {
+    .directive('mvImage', function(configFactory, $filter, gridChecker, $animate, $timeout, debugSelector, $rootScope, debugTimer, playbackManager) {
       return {
         restrict: 'E',
         replace: true,
@@ -24,7 +24,14 @@ angular
 
           scope.getConfig();
 
-          scope.$on('animation-start', initAnimations);
+          var statusChecker = scope.$watch(function() {
+            return playbackManager.ready;
+          }, function(status) {
+            if(status === true) {
+              initAnimations(playbackManager.duration);
+              statusChecker();
+            }
+          });
           /////
 
           function getConfig() {
@@ -81,16 +88,14 @@ angular
 
 
 
-          function initAnimations(event, duration) {
-            var loopSkip = false;
+          function initAnimations(duration) {
+            var loopSkip = false, loopAnimation;
             if(scope.config === null) {
               getConfig();
             }
 
             if(scope.config.animation) {
-              if(debugSelector.debug === true){
-                debugTimer.setTimer(timerName + 'Intro');
-              }
+
               if(scope.config.animation.outro.duration + scope.config.animation.intro.duration > duration) {
                 scope.config.animation.outro.duration = 1;
                 scope.config.animation.intro.duration = 1;
@@ -98,6 +103,22 @@ angular
               }
 
               $timeout(function() {
+
+                if(debugSelector.debug === true){
+                  debugTimer.stopTimer(timerName + 'Loop');
+                }
+
+                element.removeClass(
+                    scope.config.animation.loop.animation +
+                    ' infinite ' +
+                    scope.config.animation.loop.timingFunction +
+                    ' duration-' +
+                    scope.config.animation.loop.duration * 10
+                );
+
+                if(debugSelector.debug === true){
+                  debugTimer.stopTimer(timerName + 'Intro');
+                }
 
                 element.removeClass(
                     scope.config.animation.intro.animation +
@@ -108,23 +129,9 @@ angular
                 );
 
                 if(debugSelector.debug === true){
-                  debugTimer.stopTimer(timerName + 'Intro');
-                }
-                element.removeClass(
-                    scope.config.animation.loop.animation +
-                    ' infinite ' +
-                    scope.config.animation.loop.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.loop.duration * 10
-                );
-
-                if(debugSelector.debug === true){
-                  debugTimer.stopTimer(timerName + 'Loop');
-                }
-
-                if(debugSelector.debug === true){
                   debugTimer.setTimer(timerName + 'Outro');
                 }
+
                 $animate.addClass(element,
                     scope.config.animation.outro.animation +
                     ' ' +

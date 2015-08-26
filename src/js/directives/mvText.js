@@ -1,22 +1,8 @@
-/***
-           ___          ___         ___        _____                 ___          ___        _____                  ___
-         /__/ \       /  /\       /  /\      /  /::\               /__/ \       /  /\      /  /::\     ___        /  /\
-        |  |::\     /  /::\     /  /::\    /  /:/\:\              |  |::\     /  /:/_    /  /:/\:\   /  /\      /  /::\
-       |  |:|:\   /  /:/\:\   /  /:/\:\  /  /:/  \:\             |  |:|:\   /  /:/ /\  /  /:/  \:\ /  /:/     /  /:/\:\
-    __|__|:|\:\ /  /:/  \:\ /  /:/  \:\/__/:/ \__\:|          __|__|:|\:\ /  /:/ /:/_/__/:/ \__\:/__/::\    /  /:/~/::\
-  /__/::::| \:/__/:/ \__\:/__/:/ \__\:\  \:\ /  /:/         /__/::::| \:/__/:/ /:/ /\  \:\ /  /:\__\/\:\__/__/:/ /:/\:\
- \  \:\~~\__\\  \:\ /  /:\  \:\ /  /:/\  \:\  /:/          \  \:\~~\__\\  \:\/:/ /:/\  \:\  /:/   \  \:\/\  \:\/:/__\/
- \  \:\      \  \:\  /:/ \  \:\  /:/  \  \:\/:/            \  \:\      \  \::/ /:/  \  \:\/:/     \__\::/\  \::/
- \  \:\      \  \:\/:/   \  \:\/:/    \  \::/              \  \:\      \  \:\/:/    \  \::/      /__/:/  \  \:\
- \  \:\      \  \::/     \  \::/      \__\/                \  \:\      \  \::/      \__\/       \__\/    \  \:\
- \__\/       \__\/       \__\/                             \__\/       \__\/                             \__\/
- */
-
 
 'use strict';
 angular
     .module('mvFramework')
-    .directive('mvText', function($interval, configFactory, $filter, $timeout, fontFactor, gridChecker, $animate, $rootScope, debugSelector, debugTimer) {
+    .directive('mvText', function($interval, configFactory, $filter, $timeout, fontFactor, gridChecker, $animate, $rootScope, debugSelector, debugTimer, playbackManager) {
       return {
         restrict: 'E',
         replace: true,
@@ -36,8 +22,14 @@ angular
 
           scope.getConfig();
 
-          scope.$on('animation-start', initAnimations);
-
+          var statusChecker = scope.$watch(function() {
+            return playbackManager.ready;
+          }, function(status) {
+            if(status === true) {
+              initAnimations(playbackManager.duration);
+              statusChecker();
+            }
+          });
 
           /////
 
@@ -82,7 +74,7 @@ angular
             }, 0);
           }
 
-          function initAnimations(event, duration) {
+          function initAnimations(duration) {
             var loopSkip = false;
             if(scope.config === null) {
               getConfig();
@@ -96,6 +88,8 @@ angular
                 scope.config.animation.outro.duration = 1;
                 scope.config.animation.intro.duration = 1;
 
+              } else if(scope.config.animation.outro.duration + scope.config.animation.intro.duration === duration) {
+                loopSkip = true;
               }
 
               $timeout(function() {
@@ -173,14 +167,15 @@ angular
                     if(debugSelector.debug === true){
                       debugTimer.setTimer(timerName + 'Loop');
                     }
-
-                    $animate.addClass(element,
-                        scope.config.animation.loop.animation +
-                        ' infinite ' +
-                        scope.config.animation.loop.timingFunction +
-                        ' duration-' +
-                        scope.config.animation.loop.duration * 10
-                    );
+                    if(loopSkip === false) {
+                      $animate.addClass(element,
+                          scope.config.animation.loop.animation +
+                          ' infinite ' +
+                          scope.config.animation.loop.timingFunction +
+                          ' duration-' +
+                          scope.config.animation.loop.duration * 10
+                      );
+                    }
                   })
             }
           }

@@ -17,38 +17,43 @@
 angular.module('mvFramework')
   .factory('playbackManager', function($timeout, configFactory, $rootScope, debugSelector) {
 
+    var scope = this;
 
-    this.init = function(elem, componentScope) {
+    scope.duration = 0;
+    scope.ready = false;
+
+    scope.init = function(elem, componentScope) {
       elem.style.visibility = 'hidden';
 
       configFactory.loadConfig().then(function(data) {
         $timeout(function() {
           var configDuration = data.duration;
 
-          if(configDuration < 1) {
+          if(configDuration < 2) {
             return;
           }
 
           elem.style.visibility = 'visible';
 
-          beginCycle(componentScope, configDuration);
+          setReady(configDuration);
 
           $timeout(function() {
-            //angular.element(elem).addClass('animated fadeOut');
             // This is where the 'player.endTemplate' will go
           }, configDuration * 1000);
-        }, 100)
+        }, 500)
       });
 
 
 
 
-      function beginCycle(scope, duration) {
-        scope.$broadcast('animation-start', duration);
-        $rootScope.$broadcast('debug-animation-start');
+
+
+      function setReady(duration) {
+        scope.duration = duration;
+        scope.ready = true;
       }
     };
 
 
-    return this;
+    return scope;
   });
