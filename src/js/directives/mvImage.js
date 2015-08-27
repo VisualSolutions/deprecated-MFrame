@@ -38,6 +38,14 @@ angular
             configFactory.getComponentConfig(scope.path).then(function(data) {
               scope.config = data;
               setupConfig();
+
+              if(debugSelector.debug === true){
+                debugTimer.setTimer(timerName + 'Intro');
+                debugTimer.setTimer(timerName + 'Loop');
+                debugTimer.setTimer(timerName + 'Outro');
+              }
+
+              playbackManager.componentReady(timerName);
             });
           }
 
@@ -89,7 +97,7 @@ angular
 
 
           function initAnimations(duration) {
-            var loopSkip = false, loopAnimation;
+            var loopSkip = false;
             if(scope.config === null) {
               getConfig();
             }
@@ -99,27 +107,17 @@ angular
               if(scope.config.animation.outro.duration + scope.config.animation.intro.duration > duration) {
                 scope.config.animation.outro.duration = 1;
                 scope.config.animation.intro.duration = 1;
-
               }
 
+              if(scope.config.animation.outro.duration + scope.config.animation.intro.duration === duration) {
+                loopSkip = true;
+              }
+
+
               $timeout(function() {
-
-                if(debugSelector.debug === true){
-                  debugTimer.stopTimer(timerName + 'Loop');
-                }
-
-                element.removeClass(
-                    scope.config.animation.loop.animation +
-                    ' infinite ' +
-                    scope.config.animation.loop.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.loop.duration * 10
-                );
-
                 if(debugSelector.debug === true){
                   debugTimer.stopTimer(timerName + 'Intro');
                 }
-
                 element.removeClass(
                     scope.config.animation.intro.animation +
                     ' ' +
@@ -129,9 +127,21 @@ angular
                 );
 
                 if(debugSelector.debug === true){
-                  debugTimer.setTimer(timerName + 'Outro');
+                  debugTimer.stopTimer(timerName + 'Loop');
                 }
+                element.removeClass(
+                    scope.config.animation.loop.animation +
+                    ' infinite ' +
+                    scope.config.animation.loop.timingFunction +
+                    ' duration-' +
+                    scope.config.animation.loop.duration * 10
+                );
 
+
+
+                if(debugSelector.debug === true){
+                  debugTimer.startTimer(timerName + 'Outro');
+                }
                 $animate.addClass(element,
                     scope.config.animation.outro.animation +
                     ' ' +
@@ -153,7 +163,7 @@ angular
               }, (duration - scope.config.animation.outro.duration) * 1000);
 
               if(debugSelector.debug === true){
-                debugTimer.setTimer(timerName + 'Intro');
+                debugTimer.startTimer(timerName + 'Intro');
               }
 
               $animate.addClass(element,
@@ -177,16 +187,17 @@ angular
 
 
                     if(debugSelector.debug === true){
-                      debugTimer.setTimer(timerName + 'Loop');
+                      debugTimer.startTimer(timerName + 'Loop');
                     }
-
-                    $animate.addClass(element,
-                        scope.config.animation.loop.animation +
-                        ' infinite ' +
-                        scope.config.animation.loop.timingFunction +
-                        ' duration-' +
-                        scope.config.animation.loop.duration * 10
-                    );
+                    if(loopSkip === false) {
+                      $animate.addClass(element,
+                          scope.config.animation.loop.animation +
+                          ' infinite ' +
+                          scope.config.animation.loop.timingFunction +
+                          ' duration-' +
+                          scope.config.animation.loop.duration * 10
+                      );
+                    }
                   })
             }
           }

@@ -15,45 +15,54 @@
 'use strict';
 
 angular.module('mvFramework')
-  .factory('playbackManager', function($timeout, configFactory, $rootScope, debugSelector) {
+  .factory('playbackManager', function($timeout, configFactory) {
 
     var scope = this;
 
+    var components = [],
+        element;
     scope.duration = 0;
     scope.ready = false;
 
-    scope.init = function(elem, componentScope) {
-      elem.style.visibility = 'hidden';
+    scope.init = function(elem) {
 
       configFactory.loadConfig().then(function(data) {
+        scope.config = data;
+      });
+
+      elem.style.visibility = 'hidden';
+
+      element = elem;
+    };
+
+    scope.componentReady = function(name) {
+      if(components.indexOf(name) === -1) {
+        components.push(name);
+      }
+
+      if(components.length === configFactory.config.components.length) {
+        var configDuration = scope.config.duration;
+
+        if(configDuration < 2) {
+          return;
+        }
+
         $timeout(function() {
-          var configDuration = data.duration;
 
-          if(configDuration < 2) {
-            return;
-          }
-
-          elem.style.visibility = 'visible';
-
+          element.style.visibility = 'visible';
           setReady(configDuration);
 
           $timeout(function() {
             // This is where the 'player.endTemplate' will go
           }, configDuration * 1000);
-        }, 500)
-      });
-
-
-
-
-
-
-      function setReady(duration) {
-        scope.duration = duration;
-        scope.ready = true;
+        }, 300);
       }
     };
 
+    function setReady(duration) {
+      scope.duration = duration;
+      scope.ready = true;
+    }
 
     return scope;
   });

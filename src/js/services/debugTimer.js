@@ -10,6 +10,8 @@ angular.module('mvFramework')
 
       scope.setTimer = setTimer;
       scope.stopTimer = stopTimer;
+      scope.startTimer = startTimer;
+      scope.startAllTimers = startAllTimers;
 
 
       return scope;
@@ -21,24 +23,38 @@ angular.module('mvFramework')
         scope.timers.push(new Timer(name));
       }
 
+      function startAllTimers() {
+        scope.timers.map(function(timer) {
+          timer.start();
+        })
+      }
+
+      function startTimer(name) {
+        scope.timers.filter(function(timer) {return timer.name === name})[0].start();
+      }
+
       function stopTimer(name) {
         scope.timers.filter(function(timer) {return timer.name === name})[0].stop();
       }
 
       function Timer(name) {
-        var elapsed, startTime = new Date().getTime();
+        var timeLoop, elapsed, startTime;
         var scope = this;
 
         scope.name = name;
 
-        var timeLoop = $interval(function() {
-          var time = new Date().getTime() - startTime;
+        scope.start = function() {
+          startTime = new Date().getTime();
 
-          elapsed = Math.floor(time / 100) / 10;
-          if(Math.round(elapsed) == elapsed) { elapsed += '.00'; }
+          timeLoop = $interval(function() {
+            var time = new Date().getTime() - startTime;
 
-          scope.value = elapsed;
-        }, 100);
+            elapsed = Math.floor(time / 100) / 10;
+            if(Math.round(elapsed) == elapsed) { elapsed += '.00'; }
+
+            scope.value = elapsed;
+          }, 100);
+        };
 
         scope.stop = function() {
           $interval.cancel(timeLoop);

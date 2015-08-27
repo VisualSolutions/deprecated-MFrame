@@ -6,6 +6,7 @@ angular
     .factory('configFactory', function(mvLoader, errorHandler, $q) {
       var scope = this;
 
+      scope.config = null;
       scope.getComponentConfig = getComponentConfig;
       scope.loadConfig = loadConfig;
 
@@ -15,6 +16,7 @@ angular
         var d = $q.defer();
         if(scope.config === null || typeof scope.config === 'undefined') {
           mvLoader.loadConfig().then(function(response) {
+            scope.config = response.data;
             d.resolve(response.data);
           });
         } else {
