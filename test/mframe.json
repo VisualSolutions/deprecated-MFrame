@@ -1,5 +1,5 @@
 {
-  "duration": 5,
+  "duration": 20,
   "components": [
     {
       "type": "text",
@@ -141,19 +141,19 @@
       "animation": {
         "name": "Basic Fade In",
         "intro": {
-          "animation": "flipInX",
+          "animation": "fadeIn",
           "timingFunction": "ease-out",
-          "duration": 2
+          "duration": 5.2
         },
         "loop": {
-            "animation": "jello",
-            "timingFunction": "linear",
-            "duration": 6
+          "animation": "jello",
+          "timingFunction": "linear",
+          "duration": 7.9
         },
         "outro": {
-            "animation": "fadeOut",
-            "timingFunction": "ease-in",
-            "duration": 2
+          "animation": "fadeOut",
+          "timingFunction": "ease-in",
+          "duration": 5.4
         }
       }
     },
@@ -305,19 +305,19 @@
       "animation": {
         "name": "Basic Fade In",
         "intro": {
-          "animation": "bounceInDown",
+          "animation": "fadeIn",
           "timingFunction": "ease-out",
-          "duration": 2
+          "duration": 5.2
         },
         "loop": {
           "animation": "jello",
           "timingFunction": "linear",
-          "duration": 6
+          "duration": 7.9
         },
         "outro": {
-          "animation": "bounceOutUp",
+          "animation": "fadeOut",
           "timingFunction": "ease-in",
-          "duration": 2
+          "duration": 5.4
         }
       }
     },
@@ -371,17 +371,17 @@
         "intro": {
           "animation": "fadeIn",
           "timingFunction": "ease-out",
-          "duration": 2
+          "duration": 5.2
         },
         "loop": {
           "animation": "jello",
           "timingFunction": "linear",
-          "duration": 6
+          "duration": 7.9
         },
         "outro": {
           "animation": "fadeOut",
           "timingFunction": "ease-in",
-          "duration": 2
+          "duration": 5.4
         }
       }
     }

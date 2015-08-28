@@ -82,6 +82,7 @@ angular
             }, 0);
           }
 
+
           function initAnimations(duration) {
             var loopSkip = false,
                 loopCount;
@@ -112,21 +113,23 @@ angular
               },(duration - scope.config.animation.outro.duration) * 1000);
 
               animateIntro()
-                .then(function() {
-                  endIntro();
-                  if(loopSkip === false) {
-                    animateLoop(loopCount);
-                  }
-                })
+                  .then(function() {
+                    endIntro();
+                    if(loopSkip === false) {
+                      animateLoop(loopCount).then(function() {
+                        endLoop();
+                      });
+                    }
+                  })
             }
 
             function endAnimations() {
               endIntro();
               endLoop();
               animateOutro()
-                .then(function() {
-                  endOutro();
-                });
+                  .then(function() {
+                    endOutro();
+                  });
             }
 
             function animateLoop(count) {

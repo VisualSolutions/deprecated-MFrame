@@ -1,6 +1,9 @@
 .no-display {
   display: none !important;
 }
+.no-visible {
+  visibility: hidden !important;
+}
 body {
   overflow: hidden;
 }
