@@ -1,6 +1,14 @@
 .no-display {
   display: none !important;
 }
+.hidden {
+  visibility: hidden;
+  animation-play-state: paused;
+}
+.hidden-active {
+  visibility: visible;
+  animation-play-state: running;
+}
 body {
   overflow: hidden;
 }

@@ -17,8 +17,8 @@ angular
           scope.getConfig = getConfig;
           scope.setupConfig = setupConfig;
 
-
           var timerName = 'text'+ scope.$id;
+
 
           scope.getConfig();
 
@@ -38,13 +38,13 @@ angular
             configFactory.getComponentConfig(scope.path).then(function(data) {
               scope.config = data;
               setupConfig();
-
-              if(debugSelector.debug === true){
+/*
+              if(debugSelector.debug === true && !console.time('test')){
                 timerProvider.setTimer(timerName + 'Intro');
                 timerProvider.setTimer(timerName + 'Loop');
                 timerProvider.setTimer(timerName + 'Outro');
               }
-
+*/
               playbackManager.componentReady(timerName);
             });
           }
@@ -131,7 +131,7 @@ angular
 
             function animateLoop(count) {
               if(debugSelector.debug === true){
-                timerProvider.startTimer(timerName + 'Loop');
+                console.time(timerName + 'Loop');
               }
               return $animate.addClass(element,
                   scope.config.animation.loop.animation + ' ' +
@@ -144,7 +144,7 @@ angular
 
             function animateIntro() {
               if(debugSelector.debug === true){
-                timerProvider.startTimer(timerName + 'Intro');
+                console.time(timerName + 'Intro');
               }
               return $animate.addClass(element,
                   scope.config.animation.intro.animation + ' ' +
@@ -157,8 +157,11 @@ angular
 
             function animateOutro() {
               if(debugSelector.debug === true){
-                timerProvider.startTimer(timerName + 'Outro');
+                console.time(timerName + 'Outro');
               }
+              $timeout(function() {
+                element.addClass('no-display');
+              }, scope.config.animation.outro.duration * 1000);
               return $animate.addClass(element,
                   scope.config.animation.outro.animation + ' ' +
                   scope.config.animation.outro.timingFunction +
@@ -169,7 +172,7 @@ angular
 
             function endLoop() {
               if(debugSelector.debug === true) {
-                timerProvider.stopTimer(timerName + 'Loop');
+                console.timeEnd(timerName + 'Loop');
               }
               element.removeClass(
                   scope.config.animation.intro.animation +
@@ -183,7 +186,7 @@ angular
 
             function endIntro() {
               if(debugSelector.debug === true) {
-                timerProvider.stopTimer(timerName + 'Intro');
+                console.timeEnd(timerName + 'Intro');
               }
               element.removeClass(
                   scope.config.animation.intro.animation +
@@ -198,7 +201,7 @@ angular
               element.addClass('no-display');
 
               if(debugSelector.debug === true) {
-                timerProvider.stopTimer(timerName + 'Outro');
+                console.timeEnd(timerName + 'Outro');
               }
             }
           }

@@ -38,12 +38,12 @@ angular
             configFactory.getComponentConfig(scope.path).then(function(data) {
               scope.config = data;
               setupConfig();
-
+/*
               if(debugSelector.debug === true){
                 timerProvider.setTimer(timerName + 'Intro');
                 timerProvider.setTimer(timerName + 'Loop');
                 timerProvider.setTimer(timerName + 'Outro');
-              }
+              }*/
 
               playbackManager.componentReady(timerName);
             });
@@ -124,28 +124,28 @@ angular
               },(duration - scope.config.animation.outro.duration) * 1000);
 
               animateIntro()
-                .then(function() {
-                  endIntro();
-                  if(loopSkip === false) {
-                    animateLoop(loopCount);
-                  }
-                })
+                  .then(function() {
+                    endIntro();
+                    if(loopSkip === false) {
+                      animateLoop(loopCount).then(function() {
+                        endLoop();
+                      });
+                    }
+                  })
             }
 
             function endAnimations() {
               endIntro();
-
               endLoop();
-
               animateOutro()
-                .then(function() {
-                  endOutro();
-                });
+                  .then(function() {
+                    endOutro();
+                  });
             }
 
             function animateLoop(count) {
               if(debugSelector.debug === true){
-                timerProvider.startTimer(timerName + 'Loop');
+                console.time(timerName + 'Loop');
               }
               return $animate.addClass(element,
                   scope.config.animation.loop.animation + ' ' +
@@ -158,7 +158,7 @@ angular
 
             function animateIntro() {
               if(debugSelector.debug === true){
-                timerProvider.startTimer(timerName + 'Intro');
+                console.time(timerName + 'Intro');
               }
               return $animate.addClass(element,
                   scope.config.animation.intro.animation + ' ' +
@@ -171,20 +171,22 @@ angular
 
             function animateOutro() {
               if(debugSelector.debug === true){
-                timerProvider.startTimer(timerName + 'Outro');
+                console.time(timerName + 'Outro');
               }
+              $timeout(function() {
+                element.addClass('no-display');
+              }, scope.config.animation.outro.duration * 1000);
               return $animate.addClass(element,
                   scope.config.animation.outro.animation + ' ' +
                   scope.config.animation.outro.timingFunction +
                   ' duration-' +
-                  scope.config.animation.outro.duration * 10 +
-                  ' iteration-count-1'
+                  scope.config.animation.outro.duration * 10
               );
             }
 
             function endLoop() {
               if(debugSelector.debug === true) {
-                timerProvider.stopTimer(timerName + 'Loop');
+                console.timeEnd(timerName + 'Loop');
               }
               element.removeClass(
                   scope.config.animation.intro.animation +
@@ -198,7 +200,7 @@ angular
 
             function endIntro() {
               if(debugSelector.debug === true) {
-                timerProvider.stopTimer(timerName + 'Intro');
+                console.timeEnd(timerName + 'Intro');
               }
               element.removeClass(
                   scope.config.animation.intro.animation +
@@ -210,12 +212,10 @@ angular
               );
             }
             function endOutro() {
-              if(debugSelector.debug === true) {
-                timerProvider.stopTimer(timerName + 'Outro');
-              }
+              element.addClass('no-display');
 
-              if(scope.config.animation.outro.animation.length > 0) {
-                element.addClass('no-display');
+              if(debugSelector.debug === true) {
+                console.timeEnd(timerName + 'Outro');
               }
             }
           }

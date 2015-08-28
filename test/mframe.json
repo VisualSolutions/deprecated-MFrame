@@ -1,5 +1,5 @@
 {
-  "duration": 13,
+  "duration": 5,
   "components": [
     {
       "type": "text",
@@ -143,17 +143,17 @@
         "intro": {
           "animation": "flipInX",
           "timingFunction": "ease-out",
-          "duration": 4
+          "duration": 2
         },
         "loop": {
             "animation": "jello",
             "timingFunction": "linear",
-            "duration": 4
+            "duration": 6
         },
         "outro": {
             "animation": "fadeOut",
             "timingFunction": "ease-in",
-            "duration": 4
+            "duration": 2
         }
       }
     },
@@ -307,17 +307,17 @@
         "intro": {
           "animation": "bounceInDown",
           "timingFunction": "ease-out",
-          "duration": 4
+          "duration": 2
         },
         "loop": {
           "animation": "jello",
           "timingFunction": "linear",
-          "duration": 4
+          "duration": 6
         },
         "outro": {
           "animation": "bounceOutUp",
           "timingFunction": "ease-in",
-          "duration": 4
+          "duration": 2
         }
       }
     },
@@ -371,17 +371,17 @@
         "intro": {
           "animation": "fadeIn",
           "timingFunction": "ease-out",
-          "duration": 4
+          "duration": 2
         },
         "loop": {
           "animation": "jello",
           "timingFunction": "linear",
-          "duration": 4
+          "duration": 6
         },
         "outro": {
           "animation": "fadeOut",
           "timingFunction": "ease-in",
-          "duration": 4
+          "duration": 2
         }
       }
     }

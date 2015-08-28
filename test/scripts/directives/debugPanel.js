@@ -11,10 +11,10 @@ angular.module('frameworkTest')
         templateUrl: 'template/debug-panel.html',
         link: function(scope, element, attrs) {
           scope.debugItems = [];
-
+/*
           scope.$watch(timerProvider.timers.length, function() {
             scope.debugTimers = timerProvider.timers;
-          });
+          });*/
         }
       }
     });
