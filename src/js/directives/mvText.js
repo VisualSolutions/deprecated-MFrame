@@ -101,9 +101,9 @@ angular
                 loopSkip = true;
               }
 
-              loopCount = Math.floor((duration - (scope.config.animation.outro.duration + scope.config.animation.intro.duration)) / scope.config.animation.loop.duration);
+              loopCount = Math.floor((duration - (scope.config.animation.outro.duration + scope.config.animation.intro.duration)) / scope.config.animation.loop.duration) || 0;
               console.log(loopCount);
-              if(loopCount === 0) {
+              if(loopCount === 0 || Infinity) {
                 loopSkip = true;
               }
               console.log(loopSkip);
@@ -111,6 +111,8 @@ angular
               $timeout(function() {
                 endAnimations();
               },(duration - scope.config.animation.outro.duration) * 1000);
+
+              console.log((duration - scope.config.animation.outro.duration) * 1000);
 
               animateIntro()
                   .then(function() {

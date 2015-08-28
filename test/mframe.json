@@ -1,5 +1,5 @@
 {
-  "duration": 20,
+  "duration": 5,
   "components": [
     {
       "type": "text",
@@ -143,17 +143,17 @@
         "intro": {
           "animation": "fadeIn",
           "timingFunction": "ease-out",
-          "duration": 5.2
+          "duration": 0
         },
         "loop": {
           "animation": "jello",
           "timingFunction": "linear",
-          "duration": 7.9
+          "duration": 0
         },
         "outro": {
           "animation": "fadeOut",
           "timingFunction": "ease-in",
-          "duration": 5.4
+          "duration": 0
         }
       }
     },
@@ -307,17 +307,17 @@
         "intro": {
           "animation": "fadeIn",
           "timingFunction": "ease-out",
-          "duration": 5.2
+          "duration": 2
         },
         "loop": {
           "animation": "jello",
           "timingFunction": "linear",
-          "duration": 7.9
+          "duration": 0
         },
         "outro": {
           "animation": "fadeOut",
           "timingFunction": "ease-in",
-          "duration": 5.4
+          "duration": 2
         }
       }
     },
