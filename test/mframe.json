@@ -1,5 +1,5 @@
 {
-  "duration": 10,
+  "duration": 13,
   "components": [
     {
       "type": "text",
@@ -305,7 +305,7 @@
       "animation": {
         "name": "Basic Fade In",
         "intro": {
-          "animation": "fadeIn",
+          "animation": "bounceInDown",
           "timingFunction": "ease-out",
           "duration": 4
         },
@@ -315,7 +315,7 @@
           "duration": 4
         },
         "outro": {
-          "animation": "fadeOut",
+          "animation": "bounceOutUp",
           "timingFunction": "ease-in",
           "duration": 4
         }

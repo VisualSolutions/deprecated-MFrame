@@ -4,7 +4,7 @@
  'use strict';
 angular
     .module('mvFramework')
-    .directive('mvImage', function(configFactory, $filter, gridChecker, $animate, $timeout, debugSelector, $rootScope, debugTimer, playbackManager) {
+    .directive('mvImage', function(configFactory, $filter, gridChecker, $animate, $timeout, debugSelector, $rootScope, timerProvider, playbackManager) {
       return {
         restrict: 'E',
         replace: true,
@@ -40,9 +40,9 @@ angular
               setupConfig();
 
               if(debugSelector.debug === true){
-                debugTimer.setTimer(timerName + 'Intro');
-                debugTimer.setTimer(timerName + 'Loop');
-                debugTimer.setTimer(timerName + 'Outro');
+                timerProvider.setTimer(timerName + 'Intro');
+                timerProvider.setTimer(timerName + 'Loop');
+                timerProvider.setTimer(timerName + 'Outro');
               }
 
               playbackManager.componentReady(timerName);
@@ -94,10 +94,9 @@ angular
 
           }
 
-
-
           function initAnimations(duration) {
-            var loopSkip = false;
+            var loopSkip = false,
+                loopCount;
             if(scope.config === null) {
               getConfig();
             }
@@ -109,96 +108,115 @@ angular
                 scope.config.animation.intro.duration = 1;
               }
 
-              if(scope.config.animation.outro.duration + scope.config.animation.intro.duration === duration) {
+              if(duration - (scope.config.animation.outro.duration + scope.config.animation.intro.duration) < scope.config.animation.loop.duration) {
                 loopSkip = true;
               }
 
+              loopCount = Math.floor((duration - (scope.config.animation.outro.duration + scope.config.animation.intro.duration)) / scope.config.animation.loop.duration);
+              console.log(loopCount);
+              if(loopCount === 0) {
+                loopSkip = true;
+              }
+              console.log(loopSkip);
 
               $timeout(function() {
-                if(debugSelector.debug === true){
-                  debugTimer.stopTimer(timerName + 'Intro');
-                }
-                element.removeClass(
-                    scope.config.animation.intro.animation +
-                    ' ' +
-                    scope.config.animation.intro.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.intro.duration * 10
-                );
+                endAnimations();
+              },(duration - scope.config.animation.outro.duration) * 1000);
 
-                if(debugSelector.debug === true){
-                  debugTimer.stopTimer(timerName + 'Loop');
-                }
-                element.removeClass(
-                    scope.config.animation.loop.animation +
-                    ' infinite ' +
-                    scope.config.animation.loop.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.loop.duration * 10
-                );
+              animateIntro()
+                .then(function() {
+                  endIntro();
+                  if(loopSkip === false) {
+                    animateLoop(loopCount);
+                  }
+                })
+            }
 
+            function endAnimations() {
+              endIntro();
 
+              endLoop();
 
-                if(debugSelector.debug === true){
-                  debugTimer.startTimer(timerName + 'Outro');
-                }
-                $animate.addClass(element,
-                    scope.config.animation.outro.animation +
-                    ' ' +
-                    scope.config.animation.outro.timingFunction +
-                    ' duration-' +
-                    scope.config.animation.outro.duration * 10
-                ).then(function() {
-                      if(debugSelector.debug === true) {
-                        debugTimer.stopTimer(timerName + 'Outro');
-                      }
+              animateOutro()
+                .then(function() {
+                  endOutro();
+                });
+            }
 
-                      if(scope.config.animation.outro.animation.length > 0) {
-                        element.addClass('no-display');
-                      }
-                    });
-
-
-
-              }, (duration - scope.config.animation.outro.duration) * 1000);
-
+            function animateLoop(count) {
               if(debugSelector.debug === true){
-                debugTimer.startTimer(timerName + 'Intro');
+                timerProvider.startTimer(timerName + 'Loop');
               }
+              return $animate.addClass(element,
+                  scope.config.animation.loop.animation + ' ' +
+                  scope.config.animation.loop.timingFunction +
+                  ' duration-' +
+                  scope.config.animation.loop.duration * 10 +
+                  ' iteration-count-' + count
+              );
+            }
 
-              $animate.addClass(element,
-                  'animated ' +
+            function animateIntro() {
+              if(debugSelector.debug === true){
+                timerProvider.startTimer(timerName + 'Intro');
+              }
+              return $animate.addClass(element,
+                  scope.config.animation.intro.animation + ' ' +
+                  scope.config.animation.intro.timingFunction +
+                  ' duration-' +
+                  scope.config.animation.intro.duration * 10 +
+                  ' iteration-count-1'
+              );
+            }
+
+            function animateOutro() {
+              if(debugSelector.debug === true){
+                timerProvider.startTimer(timerName + 'Outro');
+              }
+              return $animate.addClass(element,
+                  scope.config.animation.outro.animation + ' ' +
+                  scope.config.animation.outro.timingFunction +
+                  ' duration-' +
+                  scope.config.animation.outro.duration * 10 +
+                  ' iteration-count-1'
+              );
+            }
+
+            function endLoop() {
+              if(debugSelector.debug === true) {
+                timerProvider.stopTimer(timerName + 'Loop');
+              }
+              element.removeClass(
                   scope.config.animation.intro.animation +
                   ' ' +
                   scope.config.animation.intro.timingFunction +
                   ' duration-' +
-                  scope.config.animation.intro.duration * 10)
-                  .then(function() {
-                    if(debugSelector.debug === true){
-                      debugTimer.stopTimer(timerName + 'Intro');
-                    }
-                    element.removeClass(
-                        scope.config.animation.intro.animation +
-                        ' ' +
-                        scope.config.animation.intro.timingFunction +
-                        ' duration-' +
-                        scope.config.animation.intro.duration * 10
-                    );
+                  scope.config.animation.intro.duration * 10 +
+                  ' iteration-count-1'
+              );
+            }
 
+            function endIntro() {
+              if(debugSelector.debug === true) {
+                timerProvider.stopTimer(timerName + 'Intro');
+              }
+              element.removeClass(
+                  scope.config.animation.intro.animation +
+                  ' ' +
+                  scope.config.animation.intro.timingFunction +
+                  ' duration-' +
+                  scope.config.animation.intro.duration * 10 +
+                  ' iteration-count-1'
+              );
+            }
+            function endOutro() {
+              if(debugSelector.debug === true) {
+                timerProvider.stopTimer(timerName + 'Outro');
+              }
 
-                    if(debugSelector.debug === true){
-                      debugTimer.startTimer(timerName + 'Loop');
-                    }
-                    if(loopSkip === false) {
-                      $animate.addClass(element,
-                          scope.config.animation.loop.animation +
-                          ' infinite ' +
-                          scope.config.animation.loop.timingFunction +
-                          ' duration-' +
-                          scope.config.animation.loop.duration * 10
-                      );
-                    }
-                  })
+              if(scope.config.animation.outro.animation.length > 0) {
+                element.addClass('no-display');
+              }
             }
           }
         }

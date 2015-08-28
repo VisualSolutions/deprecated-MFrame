@@ -1,9 +1,7 @@
-
-
 'use strict';
 
 angular.module('mvFramework')
-    .factory('debugTimer', function($interval) {
+    .factory('timerProvider', function($interval, $q) {
       var scope = this;
 
       scope.timers = [];
@@ -12,7 +10,6 @@ angular.module('mvFramework')
       scope.stopTimer = stopTimer;
       scope.startTimer = startTimer;
       scope.startAllTimers = startAllTimers;
-
 
       return scope;
 
@@ -40,7 +37,6 @@ angular.module('mvFramework')
       function Timer(name) {
         var timeLoop, elapsed, startTime;
         var scope = this;
-
         scope.name = name;
 
         scope.start = function() {

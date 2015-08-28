@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('frameworkTest')
-    .directive('debugPanel', function(debugTimer) {
+    .directive('debugPanel', function(timerProvider) {
       return {
         restrict: 'E',
         scope: {},
@@ -12,9 +12,9 @@ angular.module('frameworkTest')
         link: function(scope, element, attrs) {
           scope.debugItems = [];
 
-          scope.$watch(debugTimer.timers.length, function() {
-            scope.debugTimers = debugTimer.timers;
-          })
+          scope.$watch(timerProvider.timers.length, function() {
+            scope.debugTimers = timerProvider.timers;
+          });
         }
       }
     });

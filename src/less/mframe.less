@@ -1,7 +1,7 @@
 //// Utils
 
 .no-display {
-  display: none;
+  display: none !important;
 }
 
 
@@ -85,15 +85,22 @@ body {
   animation-timing-function: ease;
 }
 
-.loop(@counter: 10) when (@counter > 0) {
+.durationLoop(@counter: 10) when (@counter > 0) {
   @big-number: @counter * 10;
   .duration-@{big-number} {
     -webkit-animation-duration: unit(@counter, s);
     animation-duration: unit(@counter, s);
   }
-
-  .loop((@counter - 0.1));
-
+  .durationLoop((@counter - 0.1));
 }
 
-.loop();
+.iterationLoop(@counter: 100) when (@counter > 0) {
+  .iteration-count-@{counter} {
+    -webkit-animation-iteration-count: @counter;
+    animation-iteration-count: @counter;
+  }
+  .iterationLoop((@counter - 1));
+}
+
+.iterationLoop();
+.durationLoop();

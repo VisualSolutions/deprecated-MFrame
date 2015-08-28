@@ -1,5 +1,5 @@
 .no-display {
-  display: none;
+  display: none !important;
 }
 body {
   overflow: hidden;
@@ -66,6 +66,406 @@ body {
 .ease {
   -webkit-animation-timing-function: ease;
   animation-timing-function: ease;
+}
+.iteration-count-100 {
+  -webkit-animation-iteration-count: 100;
+  animation-iteration-count: 100;
+}
+.iteration-count-99 {
+  -webkit-animation-iteration-count: 99;
+  animation-iteration-count: 99;
+}
+.iteration-count-98 {
+  -webkit-animation-iteration-count: 98;
+  animation-iteration-count: 98;
+}
+.iteration-count-97 {
+  -webkit-animation-iteration-count: 97;
+  animation-iteration-count: 97;
+}
+.iteration-count-96 {
+  -webkit-animation-iteration-count: 96;
+  animation-iteration-count: 96;
+}
+.iteration-count-95 {
+  -webkit-animation-iteration-count: 95;
+  animation-iteration-count: 95;
+}
+.iteration-count-94 {
+  -webkit-animation-iteration-count: 94;
+  animation-iteration-count: 94;
+}
+.iteration-count-93 {
+  -webkit-animation-iteration-count: 93;
+  animation-iteration-count: 93;
+}
+.iteration-count-92 {
+  -webkit-animation-iteration-count: 92;
+  animation-iteration-count: 92;
+}
+.iteration-count-91 {
+  -webkit-animation-iteration-count: 91;
+  animation-iteration-count: 91;
+}
+.iteration-count-90 {
+  -webkit-animation-iteration-count: 90;
+  animation-iteration-count: 90;
+}
+.iteration-count-89 {
+  -webkit-animation-iteration-count: 89;
+  animation-iteration-count: 89;
+}
+.iteration-count-88 {
+  -webkit-animation-iteration-count: 88;
+  animation-iteration-count: 88;
+}
+.iteration-count-87 {
+  -webkit-animation-iteration-count: 87;
+  animation-iteration-count: 87;
+}
+.iteration-count-86 {
+  -webkit-animation-iteration-count: 86;
+  animation-iteration-count: 86;
+}
+.iteration-count-85 {
+  -webkit-animation-iteration-count: 85;
+  animation-iteration-count: 85;
+}
+.iteration-count-84 {
+  -webkit-animation-iteration-count: 84;
+  animation-iteration-count: 84;
+}
+.iteration-count-83 {
+  -webkit-animation-iteration-count: 83;
+  animation-iteration-count: 83;
+}
+.iteration-count-82 {
+  -webkit-animation-iteration-count: 82;
+  animation-iteration-count: 82;
+}
+.iteration-count-81 {
+  -webkit-animation-iteration-count: 81;
+  animation-iteration-count: 81;
+}
+.iteration-count-80 {
+  -webkit-animation-iteration-count: 80;
+  animation-iteration-count: 80;
+}
+.iteration-count-79 {
+  -webkit-animation-iteration-count: 79;
+  animation-iteration-count: 79;
+}
+.iteration-count-78 {
+  -webkit-animation-iteration-count: 78;
+  animation-iteration-count: 78;
+}
+.iteration-count-77 {
+  -webkit-animation-iteration-count: 77;
+  animation-iteration-count: 77;
+}
+.iteration-count-76 {
+  -webkit-animation-iteration-count: 76;
+  animation-iteration-count: 76;
+}
+.iteration-count-75 {
+  -webkit-animation-iteration-count: 75;
+  animation-iteration-count: 75;
+}
+.iteration-count-74 {
+  -webkit-animation-iteration-count: 74;
+  animation-iteration-count: 74;
+}
+.iteration-count-73 {
+  -webkit-animation-iteration-count: 73;
+  animation-iteration-count: 73;
+}
+.iteration-count-72 {
+  -webkit-animation-iteration-count: 72;
+  animation-iteration-count: 72;
+}
+.iteration-count-71 {
+  -webkit-animation-iteration-count: 71;
+  animation-iteration-count: 71;
+}
+.iteration-count-70 {
+  -webkit-animation-iteration-count: 70;
+  animation-iteration-count: 70;
+}
+.iteration-count-69 {
+  -webkit-animation-iteration-count: 69;
+  animation-iteration-count: 69;
+}
+.iteration-count-68 {
+  -webkit-animation-iteration-count: 68;
+  animation-iteration-count: 68;
+}
+.iteration-count-67 {
+  -webkit-animation-iteration-count: 67;
+  animation-iteration-count: 67;
+}
+.iteration-count-66 {
+  -webkit-animation-iteration-count: 66;
+  animation-iteration-count: 66;
+}
+.iteration-count-65 {
+  -webkit-animation-iteration-count: 65;
+  animation-iteration-count: 65;
+}
+.iteration-count-64 {
+  -webkit-animation-iteration-count: 64;
+  animation-iteration-count: 64;
+}
+.iteration-count-63 {
+  -webkit-animation-iteration-count: 63;
+  animation-iteration-count: 63;
+}
+.iteration-count-62 {
+  -webkit-animation-iteration-count: 62;
+  animation-iteration-count: 62;
+}
+.iteration-count-61 {
+  -webkit-animation-iteration-count: 61;
+  animation-iteration-count: 61;
+}
+.iteration-count-60 {
+  -webkit-animation-iteration-count: 60;
+  animation-iteration-count: 60;
+}
+.iteration-count-59 {
+  -webkit-animation-iteration-count: 59;
+  animation-iteration-count: 59;
+}
+.iteration-count-58 {
+  -webkit-animation-iteration-count: 58;
+  animation-iteration-count: 58;
+}
+.iteration-count-57 {
+  -webkit-animation-iteration-count: 57;
+  animation-iteration-count: 57;
+}
+.iteration-count-56 {
+  -webkit-animation-iteration-count: 56;
+  animation-iteration-count: 56;
+}
+.iteration-count-55 {
+  -webkit-animation-iteration-count: 55;
+  animation-iteration-count: 55;
+}
+.iteration-count-54 {
+  -webkit-animation-iteration-count: 54;
+  animation-iteration-count: 54;
+}
+.iteration-count-53 {
+  -webkit-animation-iteration-count: 53;
+  animation-iteration-count: 53;
+}
+.iteration-count-52 {
+  -webkit-animation-iteration-count: 52;
+  animation-iteration-count: 52;
+}
+.iteration-count-51 {
+  -webkit-animation-iteration-count: 51;
+  animation-iteration-count: 51;
+}
+.iteration-count-50 {
+  -webkit-animation-iteration-count: 50;
+  animation-iteration-count: 50;
+}
+.iteration-count-49 {
+  -webkit-animation-iteration-count: 49;
+  animation-iteration-count: 49;
+}
+.iteration-count-48 {
+  -webkit-animation-iteration-count: 48;
+  animation-iteration-count: 48;
+}
+.iteration-count-47 {
+  -webkit-animation-iteration-count: 47;
+  animation-iteration-count: 47;
+}
+.iteration-count-46 {
+  -webkit-animation-iteration-count: 46;
+  animation-iteration-count: 46;
+}
+.iteration-count-45 {
+  -webkit-animation-iteration-count: 45;
+  animation-iteration-count: 45;
+}
+.iteration-count-44 {
+  -webkit-animation-iteration-count: 44;
+  animation-iteration-count: 44;
+}
+.iteration-count-43 {
+  -webkit-animation-iteration-count: 43;
+  animation-iteration-count: 43;
+}
+.iteration-count-42 {
+  -webkit-animation-iteration-count: 42;
+  animation-iteration-count: 42;
+}
+.iteration-count-41 {
+  -webkit-animation-iteration-count: 41;
+  animation-iteration-count: 41;
+}
+.iteration-count-40 {
+  -webkit-animation-iteration-count: 40;
+  animation-iteration-count: 40;
+}
+.iteration-count-39 {
+  -webkit-animation-iteration-count: 39;
+  animation-iteration-count: 39;
+}
+.iteration-count-38 {
+  -webkit-animation-iteration-count: 38;
+  animation-iteration-count: 38;
+}
+.iteration-count-37 {
+  -webkit-animation-iteration-count: 37;
+  animation-iteration-count: 37;
+}
+.iteration-count-36 {
+  -webkit-animation-iteration-count: 36;
+  animation-iteration-count: 36;
+}
+.iteration-count-35 {
+  -webkit-animation-iteration-count: 35;
+  animation-iteration-count: 35;
+}
+.iteration-count-34 {
+  -webkit-animation-iteration-count: 34;
+  animation-iteration-count: 34;
+}
+.iteration-count-33 {
+  -webkit-animation-iteration-count: 33;
+  animation-iteration-count: 33;
+}
+.iteration-count-32 {
+  -webkit-animation-iteration-count: 32;
+  animation-iteration-count: 32;
+}
+.iteration-count-31 {
+  -webkit-animation-iteration-count: 31;
+  animation-iteration-count: 31;
+}
+.iteration-count-30 {
+  -webkit-animation-iteration-count: 30;
+  animation-iteration-count: 30;
+}
+.iteration-count-29 {
+  -webkit-animation-iteration-count: 29;
+  animation-iteration-count: 29;
+}
+.iteration-count-28 {
+  -webkit-animation-iteration-count: 28;
+  animation-iteration-count: 28;
+}
+.iteration-count-27 {
+  -webkit-animation-iteration-count: 27;
+  animation-iteration-count: 27;
+}
+.iteration-count-26 {
+  -webkit-animation-iteration-count: 26;
+  animation-iteration-count: 26;
+}
+.iteration-count-25 {
+  -webkit-animation-iteration-count: 25;
+  animation-iteration-count: 25;
+}
+.iteration-count-24 {
+  -webkit-animation-iteration-count: 24;
+  animation-iteration-count: 24;
+}
+.iteration-count-23 {
+  -webkit-animation-iteration-count: 23;
+  animation-iteration-count: 23;
+}
+.iteration-count-22 {
+  -webkit-animation-iteration-count: 22;
+  animation-iteration-count: 22;
+}
+.iteration-count-21 {
+  -webkit-animation-iteration-count: 21;
+  animation-iteration-count: 21;
+}
+.iteration-count-20 {
+  -webkit-animation-iteration-count: 20;
+  animation-iteration-count: 20;
+}
+.iteration-count-19 {
+  -webkit-animation-iteration-count: 19;
+  animation-iteration-count: 19;
+}
+.iteration-count-18 {
+  -webkit-animation-iteration-count: 18;
+  animation-iteration-count: 18;
+}
+.iteration-count-17 {
+  -webkit-animation-iteration-count: 17;
+  animation-iteration-count: 17;
+}
+.iteration-count-16 {
+  -webkit-animation-iteration-count: 16;
+  animation-iteration-count: 16;
+}
+.iteration-count-15 {
+  -webkit-animation-iteration-count: 15;
+  animation-iteration-count: 15;
+}
+.iteration-count-14 {
+  -webkit-animation-iteration-count: 14;
+  animation-iteration-count: 14;
+}
+.iteration-count-13 {
+  -webkit-animation-iteration-count: 13;
+  animation-iteration-count: 13;
+}
+.iteration-count-12 {
+  -webkit-animation-iteration-count: 12;
+  animation-iteration-count: 12;
+}
+.iteration-count-11 {
+  -webkit-animation-iteration-count: 11;
+  animation-iteration-count: 11;
+}
+.iteration-count-10 {
+  -webkit-animation-iteration-count: 10;
+  animation-iteration-count: 10;
+}
+.iteration-count-9 {
+  -webkit-animation-iteration-count: 9;
+  animation-iteration-count: 9;
+}
+.iteration-count-8 {
+  -webkit-animation-iteration-count: 8;
+  animation-iteration-count: 8;
+}
+.iteration-count-7 {
+  -webkit-animation-iteration-count: 7;
+  animation-iteration-count: 7;
+}
+.iteration-count-6 {
+  -webkit-animation-iteration-count: 6;
+  animation-iteration-count: 6;
+}
+.iteration-count-5 {
+  -webkit-animation-iteration-count: 5;
+  animation-iteration-count: 5;
+}
+.iteration-count-4 {
+  -webkit-animation-iteration-count: 4;
+  animation-iteration-count: 4;
+}
+.iteration-count-3 {
+  -webkit-animation-iteration-count: 3;
+  animation-iteration-count: 3;
+}
+.iteration-count-2 {
+  -webkit-animation-iteration-count: 2;
+  animation-iteration-count: 2;
+}
+.iteration-count-1 {
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
 }
 .duration-100 {
   -webkit-animation-duration: 10s;

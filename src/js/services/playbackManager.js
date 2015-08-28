@@ -21,6 +21,7 @@ angular.module('mvFramework')
 
     var components = [],
         element;
+
     scope.duration = 0;
     scope.ready = false;
 
@@ -30,7 +31,7 @@ angular.module('mvFramework')
         scope.config = data;
       });
 
-      elem.style.visibility = 'hidden';
+     elem.style.visibility = 'hidden';
 
       element = elem;
     };
