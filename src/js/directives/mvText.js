@@ -19,20 +19,18 @@ angular
 
           var timerName = 'text'+ scope.$id;
 
-
           scope.getConfig();
 
           var statusChecker = scope.$watch(function() {
             return playbackManager.ready;
           }, function(status) {
             if(status === true) {
-              initAnimations(playbackManager.duration);
+              //initAnimations(playbackManager.duration);
               statusChecker();
             }
           });
 
           /////
-
 
           function getConfig() {
             configFactory.getComponentConfig(scope.path).then(function(data) {
@@ -82,8 +80,7 @@ angular
             }, 0);
           }
 
-
-          function initAnimations(duration) {
+          /*function initAnimations(duration) {
             var loopSkip = false,
                 loopCount;
             if(scope.config === null) {
@@ -209,7 +206,7 @@ angular
                 console.timeEnd(timerName + 'Outro');
               }
             }
-          }
+          }*/
 
         }
       }

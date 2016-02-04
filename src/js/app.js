@@ -3,4 +3,4 @@
  */
 
 angular
-    .module('mvFramework', ['ngAnimate']);
+    .module('mvFramework', ['ngAnimate', 'LocalStorageModule']);

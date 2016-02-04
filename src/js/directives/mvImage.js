@@ -28,7 +28,7 @@ angular
             return playbackManager.ready;
           }, function(status) {
             if(status === true) {
-              initAnimations(playbackManager.duration);
+              //initAnimations(playbackManager.duration);
               statusChecker();
             }
           });
@@ -94,7 +94,7 @@ angular
 
           }
 
-          function initAnimations(duration) {
+          /*function initAnimations(duration) {
             var loopSkip = false,
                 loopCount;
             if(scope.config === null) {
@@ -220,7 +220,7 @@ angular
                 console.timeEnd(timerName + 'Outro');
               }
             }
-          }
+          }*/
         }
       }
     });

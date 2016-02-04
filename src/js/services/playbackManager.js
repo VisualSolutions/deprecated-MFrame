@@ -36,32 +36,38 @@ angular.module('mvFramework')
       element = elem;
     };
 
+      /*****************
+       *
+       * @name componentReady
+       * @type function
+       * @desc initializes framework component
+       */
     scope.componentReady = function(name) {
       if(components.indexOf(name) === -1) {
         components.push(name);
       }
 
       if(components.length === configFactory.config.components.length) {
-        var configDuration = scope.config.duration;
+        //var configDuration = scope.config.duration;
 
-        if(configDuration < 2) {
-          return;
-        }
+        //if(configDuration < 2) {
+          //return;
+        //}
 
         $timeout(function() {
 
           element.style.visibility = 'visible';
-          setReady(configDuration);
+          setReady();
 
-          $timeout(function() {
+          /*$timeout(function() {
             // This is where the 'player.endTemplate' will go
-          }, configDuration * 1000);
+          }, configDuration * 1000);*/
         }, 300);
       }
     };
 
-    function setReady(duration) {
-      scope.duration = duration;
+    function setReady() {
+      //scope.duration = duration;
       scope.ready = true;
     }
 

@@ -2,7 +2,7 @@
 <html ng-app="frameworkTest">
 <head lang="en">
   <meta charset="utf-8">
-  <meta content="width=1920, height=1080, initial-scale=1.0, maximum-scale=1.5, user-scalable=0" name="viewport" />
+  <meta content="initial-scale=1.5" name="viewport" />
   <title></title>
   <!-- bower:css -->
   <link rel='stylesheet' href='bower_components/animate-css/animate.css' />
@@ -14,11 +14,16 @@
 </head>
 <body>
 
-<div class="site" ng-include="'views/template.html'"></div>
+<div class="page">
+  <div class="news-wrapper">
+    <mv-news path="mainNews"></mv-news>
+  </div>
+</div>
 
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 <!-- endbower -->
 <script src="scripts/lib/mframe.min.js"></script>
 
