@@ -1,92 +1,142 @@
 {
-  "components":
+  "components": [
     {
-      "type": "news",
-      "path": "mainNews",
-      "label": [
-        {
-          "name": "en-us",
-          "value": "News Feed"
-        },
-        {
-          "name": "fr-fr",
-          "value": ""
+      "type": "1",
+      "componentId": 1,
+      "path": "bgImage",
+      "labels": [],
+      "params": {
+        "locked": false,
+        "defaults": [],
+        "value": "",
+        "position": {
+          "value": "stretch",
+          "locked": true
         }
+      },
+      "styles": {
+        "opacity": {
+          "name": "Opacity",
+          "value": "1",
+          "locked": false,
+          "cssProperty": "opacity"
+        },
+        "transform": {
+          "name": "Rotation",
+          "locked": false,
+          "value": 0,
+          "cssProperty": "transform"
+        },
+        "backgroundColor": {
+          "name": "Background Color",
+          "options": [{
+            "hexString": "#fff"
+          }],
+          "locked": false,
+          "value": "#fff",
+          "cssProperty": "backgroundColor"
+        }
+      }
+    },
+    {
+      "type": "1",
+      "componentId": 2,
+      "path": "sideImage",
+      "labels": [],
+      "params": {
+        "locked": false,
+        "defaults": [],
+        "value": "",
+        "position": {
+          "value": "stretch",
+          "locked": true
+        }
+      },
+      "styles": {
+        "opacity": {
+          "name": "Opacity",
+          "value": "1",
+          "locked": false,
+          "cssProperty": "opacity"
+        },
+        "transform": {
+          "name": "Rotation",
+          "locked": false,
+          "value": 0,
+          "cssProperty": "transform"
+        },
+        "backgroundColor": {
+          "name": "Background Color",
+          "options": [{
+            "hexString": "#fff"
+          }],
+          "locked": false,
+          "value": "#fff",
+          "cssProperty": "backgroundColor"
+        }
+      }
+    },
+    {
+      "type": "0",
+      "componentId": 3,
+      "path": "bottomBodyText",
+      "labels": [{
+        "value": "",
+        "lang": "",
+        "tooltip": ""
+      }
       ],
       "params": {
-        "hidden": false,
-        "categories": {
-          "list": [],
-          "locked": false
-        },
-        "minFont": 0,
-        "maxFont": 100,
-        "maxTitleChars": 100,
-        "maxBodyChars": 200,
-        "feedLength": 20,
-        "shuffle": false,
-        "itemDisplayTime": 5,
+        "locked": false,
+        "defaults": [""],
+        "value": "In the beginning, there was some text next to an imageIn the beginning, there was some text next to an imageIn the beginning, there was some text next to an imageIn the beginning, there was some text next to an image",
+        "maxCharacters": 0,
+        "fontMin": 12,
+        "fontMax": 110,
         "blacklist": {
-          "words": [
-            "Word1",
-            "Word2",
-            "Blocked phrase 1",
-            "Another blocked phrase 2",
-            "Word3"
-          ],
-          "master": true
+          "words": [],
+          "master": false
         }
       },
       "styles": {
         "fontFamily": {
           "name": "Font",
-          "options": [
-            {
-              "name": "Almendra Bold Italic",
-              "value": "almendra_scbold_italic"
-            },
-            {
-              "name": "Almendra Italic",
-              "value": "almendraitalic"
-            }
-          ],
-          "value": "almendra_scbold_italic",
+          "options": [{
+            "name": "Lato Regular"
+          }],
+          "value": "Lato Regular",
           "locked": false,
           "cssProperty": "fontFamily"
         },
         "whiteSpace": {
           "name": "Text Wrapping",
-          "options": [
-            "normal",
-            "nowrap"
-          ],
-          "locked": true,
+          "options": ["normal", "nowrap"],
           "value": "normal",
+          "locked": false,
           "cssProperty": "whiteSpace"
         },
         "textColor": {
-          "name": "Text Color",
-          "value": [{
+          "name": "Font Color",
+          "options": [{
             "hexString": "#000"
           }],
-          "locked": true,
+          "value": "#000",
+          "locked": false,
           "cssProperty": "color"
         },
         "verticalAlign": {
           "name": "Vertical Alignment",
-          "options": [
-            "top",
-            "bottom",
-            "middle",
-            "baseline"
-          ],
+          "options": ["top", "bottom", "middle", "baseline"],
           "value": "middle",
           "cssProperty": "verticalAlign"
         },
         "backgroundColor": {
           "name": "Background Color",
-          "value": "none",
-          "locked": true,
+          "options": [{
+            "hexString": "#fff"
+          }],
+          "value": "#fff",
+          "locked": false,
           "cssProperty": "backgroundColor"
         },
         "textAlignment": {
@@ -97,8 +147,8 @@
             "right",
             "justify"
           ],
-          "value": "center",
-          "locked": true,
+          "value": "left",
+          "locked": false,
           "cssProperty": "textAlign"
         },
         "bold":{
@@ -108,32 +158,37 @@
             "bold"
           ],
           "value": "normal",
-          "locked": true,
+          "locked": false,
           "cssProperty": "fontWeight"
         },
         "textDecoration": {
           "name": "Text Decoration",
-          "options": ["underline", "line-through", "underline line-through", "none"],
+          "options": [
+            "underline",
+            "line-through",
+            "underline line-through",
+            "none"
+          ],
           "value": "none",
-          "locked": true,
+          "locked": false,
           "cssProperty": "textDecoration"
         },
         "fontStyle": {
           "name": "Font Style",
           "options": ["normal", "oblique", "italic"],
           "value": "normal",
-          "locked": true,
+          "locked": false,
           "cssProperty": "fontStyle"
         },
         "fontVariant": {
           "name": "Font Case",
           "options": [
-            {"name": "All Caps", "value": "all-caps"},
-            {"name": "Small Caps", "value": "small-caps"},
-            {"name": "Normal", "value": "normal"}
+            "all-caps",
+            "small-caps",
+            "normal"
           ],
           "value": "normal",
-          "locked": true,
+          "locked": false,
           "cssProperty": "fontVariant"
         },
         "opacity": {
@@ -145,9 +200,143 @@
         "textTransform": {
           "name": "Text Transform",
           "options": [
-            {"name": "Uppercase", "value": "uppercase"},
-            {"name": "Lowercase", "value": "lowercase"},
-            {"name": "None", "value":"none"}
+            "uppercase",
+            "lowercase",
+            "none"
+          ],
+          "value": "none",
+          "locked": true,
+          "cssProperty": "textTransform"
+        }
+      }
+    },
+    {
+      "type": 0,
+      "componentId": 4,
+      "path": "bottomHeaderText",
+      "labels": [{
+        "value": "",
+        "lang": "",
+        "tooltip": ""
+      }
+      ],
+      "params": {
+        "locked": false,
+        "defaults": [""],
+        "value": "Heading Text",
+        "maxCharacters": 0,
+        "fontMin": 12,
+        "fontMax": 34,
+        "blacklist": {
+          "words": [],
+          "master": false
+        }
+      },
+      "styles": {
+        "fontFamily": {
+          "name": "Font",
+          "options": [{
+            "name": "Lato Bold"
+          }],
+          "value": "Lato Bold",
+          "locked": false,
+          "cssProperty": "fontFamily"
+        },
+        "whiteSpace": {
+          "name": "Text Wrapping",
+          "options": ["normal", "nowrap"],
+          "value": "normal",
+          "locked": false,
+          "cssProperty": "whiteSpace"
+        },
+        "textColor": {
+          "name": "Font Color",
+          "options": [{
+            "hexString": "#000"
+          }],
+          "value": "#000",
+          "locked": false,
+          "cssProperty": "color"
+        },
+        "verticalAlign": {
+          "name": "Vertical Alignment",
+          "options": ["top", "bottom", "middle", "baseline"],
+          "value": "middle",
+          "cssProperty": "verticalAlign"
+        },
+        "backgroundColor": {
+          "name": "Background Color",
+          "options": [{
+            "hexString": "#fff"
+          }],
+          "value": "#fff",
+          "locked": false,
+          "cssProperty": "backgroundColor"
+        },
+        "textAlignment": {
+          "name": "Text Alignment",
+          "options": [
+            "left",
+            "center",
+            "right",
+            "justify"
+          ],
+          "value": "left",
+          "locked": false,
+          "cssProperty": "textAlign"
+        },
+        "bold":{
+          "name": "Bold",
+          "options": [
+            "normal",
+            "bold"
+          ],
+          "value": "normal",
+          "locked": false,
+          "cssProperty": "fontWeight"
+        },
+        "textDecoration": {
+          "name": "Text Decoration",
+          "options": [
+            "underline",
+            "line-through",
+            "underline line-through",
+            "none"
+          ],
+          "value": "none",
+          "locked": false,
+          "cssProperty": "textDecoration"
+        },
+        "fontStyle": {
+          "name": "Font Style",
+          "options": ["normal", "oblique", "italic"],
+          "value": "normal",
+          "locked": false,
+          "cssProperty": "fontStyle"
+        },
+        "fontVariant": {
+          "name": "Font Case",
+          "options": [
+            "all-caps",
+            "small-caps",
+            "normal"
+          ],
+          "value": "normal",
+          "locked": false,
+          "cssProperty": "fontVariant"
+        },
+        "opacity": {
+          "name": "Opacity",
+          "value": "1",
+          "locked": false,
+          "cssProperty": "opacity"
+        },
+        "textTransform": {
+          "name": "Text Transform",
+          "options": [
+            "uppercase",
+            "lowercase",
+            "none"
           ],
           "value": "none",
           "locked": true,

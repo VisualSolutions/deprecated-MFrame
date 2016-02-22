@@ -109,16 +109,12 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('test', [
-      'build',
-      'clean',
-      'less',
-      'copy',
-      'wiredep',
       'connect',
       'watch'
   ]);
 
   grunt.registerTask('build', [
-      'uglify'
+      'uglify',
+      'less:build'
   ]);
 };

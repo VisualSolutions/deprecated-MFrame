@@ -9,6 +9,7 @@ body {
 }
 [mv-grid] {
   position: absolute;
+  box-sizing: border-box;
 }
 .mv-text {
   position: absolute;
@@ -16,7 +17,7 @@ body {
   height: auto;
 }
 .mv-text > span {
-  line-height: 1 !important;
+  line-height: 1.5 !important;
   text-decoration: inherit;
   font-style: inherit;
   font-variant: inherit;
@@ -36,9 +37,11 @@ body {
 .mv-image .image-helper {
   position: relative;
   height: 100%;
+  width: 100%;
   margin: auto;
 }
 .mv-image .image-helper img {
+  display: block;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -46,34 +49,22 @@ body {
   right: 0;
   margin: auto;
 }
-.mv-news {
+.mv-news,
+.mv-text-slideshow {
   height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
 }
-.mv-news .feed-item {
+.mv-news .feed-item,
+.mv-text-slideshow .feed-item,
+.mv-news .slide-item,
+.mv-text-slideshow .slide-item {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-}
-.swap-animation.ng-enter {
-  -webkit-animation-name: slideInUp;
-  animation-name: slideInUp;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-  animation-duration: 2s;
-  -webkit-animation-duration: 2s;
-}
-.swap-animation.ng-leave {
-  -webkit-animation-name: slideOutUp;
-  animation-name: slideOutUp;
-  -webkit-animation-timing-function: ease-in;
-  animation-timing-function: ease-in;
-  animation-duration: .5s;
-  -webkit-animation-duration: .5s;
 }
 .alternate {
   -webkit-animation-direction: alternate;
@@ -902,4 +893,37 @@ body {
 .duration-0 {
   -webkit-animation-duration: 0s;
   animation-duration: 0s;
+}
+
+@font-face {
+  font-family: 'Lato Regular';
+  src: url('fonts/Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato Black';
+  src: url('fonts/Lato-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato Bold';
+  src: url('fonts/Lato-Bold.ttf') format('truetype');
+}
+
+
+[path^="bottomHeaderText"] {
+  text-align: center !important;
+}
+
+[path^="bottomBodyText"] {
+  background-color: #bda15c !important;
+  color: #fff !important;
+  padding: 0 40px 0 40px;
+  box-sizing: border-box;
+}
+
+[path^="bottomBodyText"] .text-content {
+  vertical-align: middle;
 }

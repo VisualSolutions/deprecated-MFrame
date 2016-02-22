@@ -4,11 +4,11 @@
 (function() {
   angular
       .module('mvFramework')
-      .directive('mvNews', function(yqlService, $interval, $animate, feedFilter, configFactory, playbackManager) {
+      .directive('mvTextSlideshow', function(yqlService, $interval, $animate, feedFilter, configFactory, playbackManager, $timeout) {
         return {
           restrict: 'E',
           templateUrl: function(tElem, tAttrs) {
-            var tpl = 'template/mv-news.html';
+            var tpl = 'template/mv-text-slideshow.html';
 
             if(tAttrs.templateUrl) {
               tpl = tAttrs.templateUrl;
@@ -24,45 +24,35 @@
             scope.feed = {};
             scope.itemStyles = {};
             scope.containerStyles = {};
+            scope.titleWrapperStyles = {};
+            scope.bodyWrapperStyles = {};
             scope.config = null;
             scope.params = null;
 
             var slideCount = 0;
 
-            var timerName = 'news'+ scope.$id;
+            var timerName = 'textSlideshow'+ scope.$id;
 
             getConfig();
-
-            function loadFeed() {
-              yqlService.getData().then(function(data) {
-                scope.feed.entries = feedFilter.filterAll(
-                    data,
-                    scope.params.categories.list,
-                    scope.params.blacklist.words,
-                    scope.params.feedLimit
-                );
-
-                prepareSlideshow();
-              });
-            }
 
             function getConfig() {
               configFactory.getComponentConfig(scope.path).then(function(data) {
                 console.log(data);
                 scope.config = data;
-                setupConfig(loadFeed);
+                setupConfig(prepareSlideshow);
                 /*
                  if(debugSelector.debug === true && !console.time('test')){
                  timerProvider.setTimer(timerName + 'Intro');
                  timerProvider.setTimer(timerName + 'Loop');
                  timerProvider.setTimer(timerName + 'Outro');
                  }
-                */
+                 */
               });
             }
 
-
             function setupConfig(callback) {
+              scope.slides = scope.config.params.value;
+
               angular.forEach(scope.config.styles, function(style) {
                 if(style.cssProperty !== "verticalAlign") {
                   scope.containerStyles[style.cssProperty] = style.value;
@@ -73,26 +63,36 @@
 
               scope.params = scope.config.params;
 
+              $timeout(function() {
+
+                scope.containerStyles.left = gridChecker.check(scope.path, 'left') * (100/24) + '%';
+                scope.containerStyles.top = gridChecker.check(scope.path, 'top') * (100/24) + '%';
+                scope.containerStyles.width = gridChecker.check(scope.path, 'width') * (100/24) + '%';
+                scope.containerStyles.height = gridChecker.check(scope.path, 'height') * (100/24) + '%';
+
+              }, 0);
+
               callback();
             }
 
             function startSlideshow() {
               $interval(function() {
-                slideCount = (slideCount >= scope.feed.entries.length) ? 0 : slideCount + 1;
-                scope.currentItem = scope.feed.entries[slideCount];
+                slideCount = (slideCount >= scope.slides.length - 1) ? 0 : slideCount + 1;
+                console.log(slideCount, scope.slides.length);
+                scope.currentItem = scope.slides[slideCount];
               }, scope.params.itemDisplayTime * 1000)
             }
 
             function prepareSlideshow() {
 
-              scope.currentItem = scope.feed.entries[slideCount];
+              scope.currentItem = scope.slides[slideCount];
 
 
               playbackManager.componentReady(timerName);
               startSlideshow();
             }
 
-            console.log(scope.feed);
+            console.log(scope.slides);
           }
         }
       });
@@ -100,13 +100,12 @@
   angular
       .module('mvFramework')
       .run(['$templateCache', function($templateCache) {
-        $templateCache.put('template/mv-news.html',
-          '<div class="mv-news" ng-style="containerStyles">' +
-          '  <div class="feed-item swap-animation" ng-animate-swap="currentItem" ng-style="itemStyles">' +
-          '    <div class="feed-item-title" ng-bind="currentItem.title || limitTo: params.maxTitleChars"></div>' +
-          '    <div class="feed-item-body" ng-bind="currentItem.item || limitTo: params.maxBodyChars"></div>' +
-          '    ' +
-          '  </div>' +
-          '</div>');
+        $templateCache.put('template/mv-text-slideshow.html',
+            '<div class="mv-text-slideshow" ng-style="containerStyles">' +
+            '  <div class="slide-item swap-animation" ng-animate-swap="currentItem" ng-style="itemStyles">' +
+            '    <div class="slide-item-title" ng-bind="currentItem.title | limitTo: params.maxTitleChars"></div>' +
+            '    <div class="slide-item-body" ng-bind="currentItem.body | limitTo: params.maxBodyChars"></div>' +
+            '  </div>' +
+            '</div>');
       }]);
 })();

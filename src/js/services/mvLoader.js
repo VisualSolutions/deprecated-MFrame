@@ -10,9 +10,17 @@ angular
 
       return service;
 
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+        var results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
 
       function loadConfig() {
-        return $http.get('mframe.json').success(function(data) {
+        var jsonPath = getParameterByName("data") || "mframe.json";
+
+        return $http.get(jsonPath).success(function(data) {
               return data;
             }).error(function() {
               errorHandler.report(101);

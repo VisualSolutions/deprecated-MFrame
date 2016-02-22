@@ -12,17 +12,26 @@ function feedFilter() {
   scope.wordFilter = function(feed, list) {
     return feed.filter(function(item) {
       return !list.some(function(word) {
-        return item.title.contains(word) || item.item.contains(word);
+        return item.title.indexOf(word) > -1 || item.item.indexOf(word) > -1;
       })
     });
   };
 
   scope.categoryFilter = function(feed, categories) {
     return feed.filter(function(item) {
-      return categories.some(function(category) {
-        return item.category === category;
+      return categories.filter(function(category) {
+        return category.enabled;
+      }).some(function(category) {
+        return item.category === category.name;
       })
     });
+  };
+
+  scope.filterAll = function(feed, categories, list, limit) {
+    return scope.wordFilter(scope.categoryFilter(feed, categories), list)
+        .filter(function(item, index) {
+          return index < limit;
+        });
   };
 
   return scope;

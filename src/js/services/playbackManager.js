@@ -48,7 +48,7 @@ angular.module('mvFramework')
       }
 
       if(components.length === configFactory.config.components.length) {
-        //var configDuration = scope.config.duration;
+        var configDuration = scope.config.duration;
 
         //if(configDuration < 2) {
           //return;
@@ -59,9 +59,11 @@ angular.module('mvFramework')
           element.style.visibility = 'visible';
           setReady();
 
-          /*$timeout(function() {
-            // This is where the 'player.endTemplate' will go
-          }, configDuration * 1000);*/
+          if (configDuration && configDuration.length > 0 && Player) {
+            $timeout(function() {
+              Player.endOfAnimation();
+            }, configDuration * 1000);
+          }
         }, 300);
       }
     };

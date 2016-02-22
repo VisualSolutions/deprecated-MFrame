@@ -1,35 +1,22 @@
 <!DOCTYPE html>
-<html ng-app="frameworkTest">
+<html ng-app="bgTemplate">
 <head lang="en">
-  <meta charset="utf-8">
-  <meta content="initial-scale=1.5" name="viewport" />
-  <title></title>
-  <!-- bower:css -->
-  <link rel='stylesheet' href='bower_components/animate-css/animate.css' />
-  <!-- endbower -->
-  <link rel="stylesheet" href="styles/mframe.css"/>
-  <link rel="stylesheet" href="styles/template.css"/>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8">
+  <title>Background Template</title>
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-
-<div class="page">
-  <div class="news-wrapper">
-    <mv-news path="mainNews"></mv-news>
-  </div>
+<div class="template" ng-controller="TemplateCtrl">
+  <mv-image path="bgImage" local-default="images/bg-image.png"></mv-image>
+  <mv-image path="sideImage" local-default="images/side-image.png"></mv-image>
+  <mv-text path="bottomHeaderText"></mv-text>
+  <mv-text path="bottomBodyText"></mv-text>
 </div>
 
-<!-- bower:js -->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
-<!-- endbower -->
-<script src="scripts/lib/mframe.min.js"></script>
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-animate.min.js"></script>
+<script src="lib/mframe.min.js"></script>
 
-<script src="scripts/util/console-time.js"></script>
 <script src="scripts/app.js"></script>
-<script src="scripts/controllers/template.js"></script>
-<script src="scripts/directives/debugPanel.js"></script>
 </body>
 </html>

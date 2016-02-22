@@ -17,13 +17,14 @@ body {
 
 [mv-grid] {
   position: absolute;
+  box-sizing: border-box;
 }
 .mv-text {
   position: absolute;
   overflow: hidden;
   height: auto;
   > span {
-    line-height: 1 !important;
+    line-height: 1.5 !important;
     text-decoration: inherit;
     font-style: inherit;
     font-variant: inherit;
@@ -44,8 +45,10 @@ body {
   .image-helper {
     position: relative;
     height: 100%;
+    width: 100%;
     margin: auto;
     img {
+      display: block;
       position: absolute;
       top: 0;
       bottom: 0;
@@ -56,12 +59,12 @@ body {
   }
 }
 
-.mv-news {
+.mv-news, .mv-text-slideshow {
   height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
-    .feed-item {
+    .feed-item, .slide-item {
       width: 100%;
       height: 100%;
       position: absolute;
@@ -75,23 +78,8 @@ body {
 //// Animations
 
 
-.swap-animation.ng-enter {
-  -webkit-animation-name: slideInUp;
-  animation-name: slideInUp;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
-  animation-duration: 2s;
-  -webkit-animation-duration: 2s;
-}
 
-.swap-animation.ng-leave {
-  -webkit-animation-name: slideOutUp;
-  animation-name: slideOutUp;
-  -webkit-animation-timing-function: ease-in;
-  animation-timing-function: ease-in;
-  animation-duration: 1s;
-  -webkit-animation-duration: 1s;
-}
+
 
 .alternate {
   -webkit-animation-direction: alternate;
