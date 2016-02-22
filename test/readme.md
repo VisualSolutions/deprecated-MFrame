@@ -35,7 +35,7 @@ MFrame doesn't require that you install any extra dependencies. However, it come
   Available directives:
 
     <mv-text path="uniqueId"/>
-    <mv-image path="uniqueId"/>
+    <mv-image path="uniqueId" local-default="image.jpg" />
 
   Services to be called from main controller:
 
@@ -98,7 +98,7 @@ configurations. Here's an example:
 The `pathName` is a unique ID that you can name whatever you want. We will use this later to link the config to the
 component.
 
-`left, top, width, height` are all related to the size or position of the component and are part of a 48x48 grid.
+`left, top, width, height` are all related to the size or position of the component and are part of a 24x24 grid.
 `ls`, and `pt` refer to *landscape* and *portrait*. The grid system detects the aspect ratio of the screen and
 returns it's corresponding class. The classes from tallest to shortest are:
 
